@@ -3,11 +3,11 @@ package red;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Estructura {
+public class Operador {
     private final int id;
     private List<Edge> edges;
 
-    public Estructura(int id) {
+    public Operador(int id) {
         this.id = id;
         this.edges = new ArrayList<>();
     }
@@ -16,7 +16,7 @@ public class Estructura {
         return id;
     }
 
-    public void addEdge(Estructura destino, double distancia) {
+    public void addEdge(Operador destino, double distancia) {
         Edge arista = new Edge(this, destino, distancia);
         this.edges.add(arista);
     }

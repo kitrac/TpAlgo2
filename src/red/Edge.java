@@ -2,11 +2,11 @@ package red;
 
 public class Edge {
 
-    private final Estructura origen;
-    private final Estructura destino;
+    private final Operador origen;
+    private final Operador destino;
     private double distancia;
 
-    public Edge(Estructura origen, Estructura destino, double distancia) {
+    public Edge(Operador origen, Operador destino, double distancia) {
         this.origen = origen;
         this.destino = destino;
         this.distancia = distancia;
@@ -16,11 +16,11 @@ public class Edge {
         return distancia;
     }
 
-    public Estructura getOrigen() {
+    public Operador getOrigen() {
         return origen;
     }
 
-    public Estructura getDestino() {
+    public Operador getDestino() {
         return destino;
     }
 

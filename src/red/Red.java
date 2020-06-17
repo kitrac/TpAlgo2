@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Red {
 
-    private List<Estructura> estructuras;
+    private List<Operador> estructuras;
 
     public Red() {
         estructuras = new ArrayList<>();
     }
 
-    public void addEstructura(Estructura estructura) {
+    public void addEstructura(Operador estructura) {
         estructuras.add(estructura);
     }
 

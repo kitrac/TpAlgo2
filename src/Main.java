@@ -1,6 +1,3 @@
-import mensaje.Mensaje;
-import red.Edge;
-import red.Estructura;
 import red.Red;
 import red.Satelite;
 

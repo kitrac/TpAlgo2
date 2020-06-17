@@ -1,15 +1,15 @@
 package mensaje;
 
-import red.Estructura;
+import red.Operador;
 
 public class Mensaje {
 
     private final int id;
-    private final Estructura origen;
-    private final Estructura destino;
+    private final Operador origen;
+    private final Operador destino;
     private final String contenido;
 
-    public Mensaje(int id, Estructura origen, Estructura destino, String contenido) {
+    public Mensaje(int id, Operador origen, Operador destino, String contenido) {
         this.id = id;
         this.origen = origen;
         this.destino = destino;
