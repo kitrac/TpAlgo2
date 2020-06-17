@@ -28,6 +28,5 @@ public class Main {
         grafo.addEstructura(satelite4);
 
         System.out.println(grafo);
-
     }
 }
