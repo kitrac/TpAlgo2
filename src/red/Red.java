@@ -1,5 +1,7 @@
 package red;
 
+import mensaje.Mensaje;
+
 import java.util.ArrayList;
 import java.util.List;
 

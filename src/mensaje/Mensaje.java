@@ -16,6 +16,22 @@ public class Mensaje {
         this.contenido = contenido;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public Operador getOrigen() {
+        return origen;
+    }
+
+    public Operador getDestino() {
+        return destino;
+    }
+
+    public String getContenido() {
+        return contenido;
+    }
+
     @Override
     public String toString() {
         return "" + this.id + " " + this.origen + " " + this.destino + " " + this.contenido;
