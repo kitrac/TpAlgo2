@@ -9,14 +9,14 @@ import red.Satelite;
 
 public class Tierra {
 
-    private Red grafo;
+    private Red redSatelital;
     private GeoSincrona orbitaGeo;
     private Media orbitaMedia;
     private Baja orbitaBaja;
 
     public Tierra() {
 
-        this.grafo = new Red();
+        this.redSatelital = new Red();
 
         this.orbitaGeo = new GeoSincrona(360000, 36000, 100000);
         this.orbitaMedia = new Media(20000, 10000, 95000);
@@ -35,20 +35,17 @@ public class Tierra {
 
         estacion.addEdge(estacion1, 1000);
 
-        this.grafo.addEstructura(satelite3);
-        this.grafo.addEstructura(satelite4);
-        this.grafo.addEstructura(estacion);
-        this.grafo.addEstructura(estacion1);
+        this.redSatelital.addEstructura(satelite3);
+        this.redSatelital.addEstructura(satelite4);
+        this.redSatelital.addEstructura(estacion);
+        this.redSatelital.addEstructura(estacion1);
     }
 
 
-    public void run(int dia) {
-        System.out.println(grafo);
-
+    public void run() {
         this.orbitaBaja.moverSatelites();
         this.orbitaMedia.moverSatelites();
 
-        System.out.println(grafo);
     }
 
 }
