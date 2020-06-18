@@ -9,6 +9,14 @@ public class Mensaje {
     private final Operador destino;
     private final String contenido;
 
+
+    public Mensaje(int id, Operador origen, Operador destino) {
+        this.id = id;
+        this.origen = origen;
+        this.destino = destino;
+        this.contenido = null;
+    }
+
     public Mensaje(int id, Operador origen, Operador destino, String contenido) {
         this.id = id;
         this.origen = origen;

@@ -17,7 +17,29 @@ public class Red {
         estructuras.add(estructura);
     }
 
-        public String toString() {
-            return "" + estructuras;
+    public List<Satelite> getSatelites() {
+        List<Satelite> satelites = new ArrayList<>();
+
+        for (Operador operador : estructuras) {
+            if (operador instanceof Satelite) {
+                satelites.add((Satelite) operador);
+            }
+        }
+        return satelites;
+    }
+
+    public List<Estacion> getEstaciones() {
+        List<Estacion> estaciones = new ArrayList<>();
+
+        for (Operador operador : estructuras) {
+            if (operador instanceof Estacion) {
+                estaciones.add((Estacion) operador);
+            }
+        }
+        return estaciones;
+    }
+
+    public String toString() {
+        return "" + estructuras;
     }
 }

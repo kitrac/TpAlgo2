@@ -32,24 +32,6 @@ public class Operador {
         return vecinos;
     }
 
-    public void addEdge(Operador destino, double distancia) {
-        Edge arista = new Edge(this, destino, distancia);
-        this.edges.add(arista);
-    }
-
-    public boolean enviarMensaje(Red red, Mensaje mensaje) {
-
-        Operador origen = mensaje.getOrigen();
-        List<Operador> listaVecinos = origen.obtenerVecinos();
-
-        boolean esVecino = listaVecinos.contains(mensaje.getDestino());
-
-        for (Operador vecino : listaVecinos) {
-
-        }
-        return true;
-    }
-
     @Override
     public String toString() {
         return "" + id + " " + edges;

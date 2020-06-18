@@ -1,11 +1,14 @@
 package Tierra;
 
+import mensaje.Mensaje;
 import orbitas.Baja;
 import orbitas.GeoSincrona;
 import orbitas.Media;
 import red.Estacion;
 import red.Red;
 import red.Satelite;
+
+import java.util.List;
 
 public class Tierra {
 
@@ -33,18 +36,25 @@ public class Tierra {
         Estacion estacion = new Estacion(5, 15000, 10000);
         Estacion estacion1 = new Estacion(6, 15000, 10000);
 
+        estacion.addEdge(satelite3);
         estacion.addEdge(estacion1, 1000);
 
         this.redSatelital.addEstructura(satelite3);
         this.redSatelital.addEstructura(satelite4);
         this.redSatelital.addEstructura(estacion);
         this.redSatelital.addEstructura(estacion1);
+
+        estacion.enviarMensaje(this.redSatelital, new Mensaje(1, estacion, estacion1));
     }
 
 
     public void run() {
         this.orbitaBaja.moverSatelites();
         this.orbitaMedia.moverSatelites();
+
+        List<Estacion> estaciones = this.redSatelital.getEstaciones();
+
+        System.out.println(estaciones);
 
     }
 

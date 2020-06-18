@@ -1,5 +1,6 @@
 package orbitas;
 
+import org.jetbrains.annotations.NotNull;
 import red.Operador;
 import red.Satelite;
 
@@ -51,7 +52,7 @@ public class Orbita {
         return Orbita.maximoLargo;
     }
 
-    public void addSatelite(Satelite satelite) {
+    public void addSatelite(@NotNull Satelite satelite) {
         if (satelite.getAltura() >= this.alturaMinima && satelite.getAltura() <= this.alturaMaxima) {
             this.satelites.add(satelite);
             satelite.setPosicion(this.largo);

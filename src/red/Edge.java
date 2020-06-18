@@ -29,6 +29,6 @@ public class Edge {
     }
 
     public String toString() {
-        return "Edge [Origen = " + this.origen.getId() + " Destino = " + this.destino.getId() + " Distancia = " + this.distancia + "]";
+        return "Conexion [ Destino = " + this.destino.getId() + " Distancia = " + this.distancia + "]";
     }
 }

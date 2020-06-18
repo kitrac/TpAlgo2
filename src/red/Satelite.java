@@ -12,6 +12,11 @@ public class Satelite extends Operador {
         this.altura = altura;
     }
 
+    public void addEdge(Operador destino, double distancia) {
+        Edge arista = new Edge(this, destino, distancia);
+        this.getEdges().add(arista);
+    }
+
     public void setPosicion(int largoOrbita) {
         this.posicion = (int) (Math.random() * largoOrbita);
     }
