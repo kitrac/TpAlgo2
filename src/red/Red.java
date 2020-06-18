@@ -17,7 +17,7 @@ public class Red {
         estructuras.add(estructura);
     }
 
-    public String toString() {
-        return "" + estructuras;
+        public String toString() {
+            return "" + estructuras;
     }
 }

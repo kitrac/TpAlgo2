@@ -31,6 +31,6 @@ public class Satelite extends Operador {
 
     @Override
     public String toString() {
-        return "Satelite posicion = " + posicion + " " + super.toString();
+        return "Satelite id = " + this.getId() + " posicion = " + posicion + " conexiones = " + this.getEdges() + "\n";
     }
 }

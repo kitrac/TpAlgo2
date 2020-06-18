@@ -10,11 +10,10 @@ public class Estacion extends Operador {
 
     public Estacion(int id, int maximoRango, int minimoRango) {
         super(id);
-
-        if(Orbita.getMaximoLargo() < maximoRango && Orbita.getMinimoLargo() > minimoRango){
+        if (Orbita.getMinimoLargo() < minimoRango && Orbita.getMaximoLargo() > maximoRango) {
             this.maximoRango = maximoRango;
             this.minimoRango = minimoRango;
-        }else{
+        } else {
             //aca iria un error
         }
     }
@@ -30,6 +29,6 @@ public class Estacion extends Operador {
 
     @Override
     public String toString() {
-        return "Estacion " + super.toString();
+        return "Estacion id = " + this.getId() + " rango = (" + this.minimoRango + "-" + this.maximoRango + ") conexiones = " + this.getEdges() + "\n";
     }
 }

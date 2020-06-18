@@ -3,7 +3,6 @@ package Tierra;
 import orbitas.Baja;
 import orbitas.GeoSincrona;
 import orbitas.Media;
-import orbitas.Orbita;
 import red.Estacion;
 import red.Red;
 import red.Satelite;
@@ -31,8 +30,8 @@ public class Tierra {
         this.orbitaMedia.addSatelite(satelite3);
         this.orbitaBaja.addSatelite(satelite4);
 
-        Estacion estacion = new Estacion(5, 10000, 15000);
-        Estacion estacion1 = new Estacion(6, 10000, 15000);
+        Estacion estacion = new Estacion(5, 15000, 10000);
+        Estacion estacion1 = new Estacion(6, 15000, 10000);
 
         estacion.addEdge(estacion1, 1000);
 
