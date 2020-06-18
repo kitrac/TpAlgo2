@@ -1,7 +1,4 @@
 import Tierra.Tierra;
-import red.Estacion;
-import red.Red;
-import red.Satelite;
 
 public class Main {
 

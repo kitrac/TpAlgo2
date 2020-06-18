@@ -17,9 +17,9 @@ public class Orbita {
 
     public Orbita(int alturaMaxima, int alturaMinima, int largo) {
         this.satelites = new ArrayList<>();
-        if(Orbita.maximoLargo < largo){
+        if (Orbita.maximoLargo < largo) {
             this.largo = Orbita.maximoLargo;
-        }else{
+        } else {
             this.largo = largo;
         }
         this.alturaMaxima = alturaMaxima;
@@ -39,20 +39,24 @@ public class Orbita {
         return this.alturaMaxima;
     }
 
-    public int getLargo(){
+    public int getLargo() {
         return this.largo;
     }
 
-    public static int getMinimoLargo(){
+    public static int getMinimoLargo() {
         return Orbita.minimoLargo;
     }
 
-    public static int getMaximoLargo(){
+    public static int getMaximoLargo() {
         return Orbita.maximoLargo;
     }
 
-    public void addSatelite(Satelite satelite){
-        this.satelites.add(satelite);
-        satelite.setPosicion(this.largo);
+    public void addSatelite(Satelite satelite) {
+        if (satelite.getAltura() >= this.alturaMinima && satelite.getAltura() <= this.alturaMaxima) {
+            this.satelites.add(satelite);
+            satelite.setPosicion(this.largo);
+        } else {
+            //error
+        }
     }
 }
