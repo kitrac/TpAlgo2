@@ -1,13 +1,15 @@
 package orbitas;
 
 import org.jetbrains.annotations.NotNull;
+import red.Edge;
+import red.Estacion;
 import red.Operador;
 import red.Satelite;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Orbita {
+public abstract class Orbita {
 
     private List<Satelite> satelites;
     private final int alturaMinima;

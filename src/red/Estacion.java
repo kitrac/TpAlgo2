@@ -7,17 +7,8 @@ import java.util.List;
 
 public class Estacion extends Operador {
 
-    private int maximoRango;
-    private int minimoRango;
-
-    public Estacion(int id, int maximoRango, int minimoRango) {
+    public Estacion(int id) {
         super(id);
-        if (Orbita.getMinimoLargo() < minimoRango && Orbita.getMaximoLargo() > maximoRango) {
-            this.maximoRango = maximoRango;
-            this.minimoRango = minimoRango;
-        } else {
-            //aca iria un error
-        }
     }
 
     public Mensaje generarMensaje(int id, Operador destino, String contenido) {
@@ -41,17 +32,15 @@ public class Estacion extends Operador {
 
         int indexDestino = listaVecinos.indexOf(mensaje.getDestino());
 
-        System.out.println(indexDestino);
+        Operador vecino = listaVecinos.get(indexDestino);
+
 
         return true;
     }
 
-    private boolean dentroRango(int posicion) {
-        return posicion >= minimoRango && posicion <= maximoRango;
-    }
 
     @Override
     public String toString() {
-        return "Estacion id = " + this.getId() + " rango = (" + this.minimoRango + "-" + this.maximoRango + ") conexiones = " + this.getEdges() + "\n";
+        return "Estacion id = " + this.getId() + " conexiones = " + this.getEdges() + "\n";
     }
 }
