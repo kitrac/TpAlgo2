@@ -17,24 +17,27 @@ public class Tierra {
     private Media orbitaMedia;
     private Baja orbitaBaja;
 
+    private static int largoTierra = 3000;
+
     public Tierra() {
+
 
         this.redSatelital = new Red();
 
-        this.orbitaGeo = new GeoSincrona(360000, 36000, 100000);
-        this.orbitaMedia = new Media(20000, 10000, 95000);
-        this.orbitaBaja = new Baja(2000, 1500, 60000);
+        this.orbitaGeo = new GeoSincrona(360000, 36000, 9000);
+        this.orbitaMedia = new Media(20000, 10000, 6000);
+        this.orbitaBaja = new Baja(2000, 1500, 4000);
 
-        Satelite satelite3 = new Satelite(1, 100, 15000);
-        Satelite satelite4 = new Satelite(4, 100, 1600);
+        Satelite satelite3 = new Satelite(1, 50, 15000, 300);
+        Satelite satelite4 = new Satelite(4, 50, 1600, 300);
 
         satelite4.addEdge(satelite3, 200);
 
         this.orbitaMedia.addSatelite(satelite3);
         this.orbitaBaja.addSatelite(satelite4);
 
-        Estacion estacion = new Estacion(3);
-        Estacion estacion1 = new Estacion(6);
+        Estacion estacion = new Estacion(3, largoTierra);
+        Estacion estacion1 = new Estacion(6, largoTierra);
 
         estacion.addEdge(satelite3);
         estacion.addEdge(estacion1, 1000);
@@ -54,7 +57,7 @@ public class Tierra {
 
         List<Estacion> estaciones = this.redSatelital.getEstaciones();
 
-        System.out.println(estaciones);
+        System.out.println(this.redSatelital);
 
     }
 

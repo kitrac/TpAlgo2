@@ -13,7 +13,7 @@ public class Media extends Orbita implements OrbitasMoviles {
     public void moverSatelites() {
         List<Satelite> satelites = this.getSatelites();
         for (Satelite satelite : satelites) {
-            satelite.mover();
+            satelite.mover(this.getLargo());
         }
     }
 }

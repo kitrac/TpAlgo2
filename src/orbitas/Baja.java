@@ -14,7 +14,7 @@ public class Baja extends Orbita implements OrbitasMoviles {
         List<Satelite> satelites = this.getSatelites();
 
         for (Satelite satelite : satelites) {
-            satelite.mover();
+            satelite.mover(this.getLargo());
         }
     }
 }

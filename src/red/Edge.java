@@ -5,11 +5,13 @@ public class Edge {
     private final Operador origen;
     private final Operador destino;
     private double distancia;
+    private boolean estado;
 
     public Edge(Operador origen, Operador destino, double distancia) {
         this.origen = origen;
         this.destino = destino;
         this.distancia = distancia;
+        this.estado = true;
     }
 
     public double getDistancia() {
@@ -24,11 +26,15 @@ public class Edge {
         return destino;
     }
 
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     public void setDistancia(double distancia) {
         this.distancia = distancia;
     }
 
     public String toString() {
-        return "Conexion [ Destino = " + this.destino.getId() + " Distancia = " + this.distancia + "]";
+        return "Conexion [ Destino = " + this.destino.getId() + " Distancia = " + this.distancia + " Estado = " + this.estado + "]";
     }
 }

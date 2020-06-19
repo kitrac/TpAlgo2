@@ -7,8 +7,9 @@ import java.util.List;
 
 public class Estacion extends Operador {
 
-    public Estacion(int id) {
+    public Estacion(int id, int largoTierra) {
         super(id);
+        this.setPosicionInicial(largoTierra);
     }
 
     public Mensaje generarMensaje(int id, Operador destino, String contenido) {
@@ -33,7 +34,6 @@ public class Estacion extends Operador {
         int indexDestino = listaVecinos.indexOf(mensaje.getDestino());
 
         Operador vecino = listaVecinos.get(indexDestino);
-
 
         return true;
     }

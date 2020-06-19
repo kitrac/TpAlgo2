@@ -15,7 +15,7 @@ public abstract class Orbita {
     private final int alturaMinima;
     private final int alturaMaxima;
     private final int largo;
-    private static int maximoLargo = 1000000;
+    private static int maximoLargo = 10000;
     private static int minimoLargo = 0;
 
     public Orbita(int alturaMaxima, int alturaMinima, int largo) {
@@ -57,9 +57,10 @@ public abstract class Orbita {
     public void addSatelite(@NotNull Satelite satelite) {
         if (satelite.getAltura() >= this.alturaMinima && satelite.getAltura() <= this.alturaMaxima) {
             this.satelites.add(satelite);
-            satelite.setPosicion(this.largo);
+            satelite.setPosicionInicial(this.largo);
         } else {
             //error
         }
     }
+
 }
