@@ -1,19 +1,21 @@
 package red;
 
 import mensaje.Mensaje;
-import orbitas.Orbita;
-
-import java.util.List;
 
 public class Estacion extends Operador {
 
     public Estacion(int id, int largoTierra) {
-        super(id);
+        super(id, 0);
+        this.setPosicionInicial(largoTierra);
+    }
+
+    public Estacion(int id, int largoTierra, int altura) {
+        super(id, altura);
         this.setPosicionInicial(largoTierra);
     }
 
     public Mensaje generarMensaje(int id, Operador destino, String contenido) {
-        return new Mensaje(id, this, destino, contenido);
+        return new Mensaje(id, this, destino);
     }
 
     public void addEdge(Satelite destino) {

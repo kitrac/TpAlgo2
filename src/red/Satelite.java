@@ -5,13 +5,11 @@ import java.util.List;
 public class Satelite extends Operador {
 
     private int velocidad;
-    private int altura;
     private int diametroVisible;
 
     public Satelite(int id, int velocidad, int altura, int diametroVisible) {
-        super(id);
+        super(id, altura);
         this.velocidad = velocidad;
-        this.altura = altura;
         this.diametroVisible = diametroVisible;
     }
 
@@ -28,10 +26,6 @@ public class Satelite extends Operador {
         return this.diametroVisible;
     }
 
-    public int getAltura() {
-        return this.altura;
-    }
-
 
     public void mover(int largoOrbita) {
         this.setPosicion(this.getPosicion() + this.velocidad);
@@ -45,10 +39,8 @@ public class Satelite extends Operador {
     public void actualizarEstadoEdges() {
         List<Edge> edges = this.getEdges();
         for (Edge arista : edges) {
-
             boolean estado = this.dentroRango(arista.getDestino().getPosicion());
             arista.setEstado(estado);
-
             Edge aristaDestino = arista.getDestino().getAristaDestino(this.getId()); //aca obtengo la arista desde el lado del destino
             aristaDestino.setEstado(estado);
         }
@@ -57,12 +49,13 @@ public class Satelite extends Operador {
     public void actualizarDistanciaEdge() {
         List<Edge> edges = this.getEdges();
         for (Edge arista : edges) {
-            if (arista.getDestino() instanceof Satelite) {
-                int distancia = Math.abs(this.getPosicion() - arista.getDestino().getPosicion()) + Math.abs(this.getAltura() - ((Satelite) arista.getDestino()).getAltura());
-                arista.setDistancia(distancia);
-                Edge aristaDestino = arista.getDestino().getAristaDestino(this.getId()); //aca obtengo la arista desde el lado del destino
-                aristaDestino.setDistancia(distancia);
-            }
+            int distanciaX = Math.abs(this.getPosicion() - arista.getDestino().getPosicion());
+            int distanciaY = Math.abs(this.getAltura() - arista.getDestino().getAltura());
+            int distancia = (int) Math.sqrt(Math.pow(distanciaX, 2) + Math.pow(distanciaY, 2));
+            arista.setDistancia(distancia);
+            Edge aristaDestino = arista.getDestino().getAristaDestino(this.getId()); //aca obtengo la arista desde el lado del destino
+            aristaDestino.setDistancia(distancia);
+
         }
     }
 
@@ -73,6 +66,6 @@ public class Satelite extends Operador {
 
     @Override
     public String toString() {
-        return "Satelite id = " + this.getId() + " altura = " + this.altura + " posicion = " + this.getPosicion() + " conexiones = " + this.getEdges() + "\n";
+        return "Satelite id = " + this.getId() + " altura = " + this.getAltura() + " posicion = " + this.getPosicion() + " conexiones = " + this.getEdges() + "\n";
     }
 }

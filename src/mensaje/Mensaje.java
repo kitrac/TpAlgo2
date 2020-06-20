@@ -7,7 +7,7 @@ public class Mensaje {
     private final int id;
     private final Operador origen;
     private final Operador destino;
-    private final String contenido;
+    private final Contenido contenido;
 
 
     public Mensaje(int id, Operador origen, Operador destino) {
@@ -17,7 +17,7 @@ public class Mensaje {
         this.contenido = null;
     }
 
-    public Mensaje(int id, Operador origen, Operador destino, String contenido) {
+        public Mensaje(int id, Operador origen, Operador destino, Contenido contenido) {
         this.id = id;
         this.origen = origen;
         this.destino = destino;
@@ -36,7 +36,7 @@ public class Mensaje {
         return destino;
     }
 
-    public String getContenido() {
+    public Contenido getContenido() {
         return contenido;
     }
 

@@ -42,7 +42,7 @@ public class Tierra {
         satelite2.addEdge(satelite1);
         satelite2.addEdge(sateliteGeo);
 
-        Estacion estacion = new Estacion(3, largoTierra);
+        Estacion estacion = new Estacion(3, largoTierra, 0);
         Estacion estacion1 = new Estacion(5, largoTierra);
 
         estacion.addEdge(satelite1);

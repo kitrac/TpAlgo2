@@ -10,15 +10,19 @@ public abstract class Operador {
     private List<Edge> edges;
     private static List<Integer> listaIds = new ArrayList<>();
     private int posicion; //posicion en la orbita o tierra;
+    private List<Mensaje> consola;
+    private int altura;
 
-    public Operador(int id) {
+    public Operador(int id, int altura) {
         if (!Operador.listaIds.contains(id)) {
             this.id = id;
             Operador.listaIds.add(this.id);
+            this.edges = new ArrayList<>();
+            this.consola = new ArrayList<>();
+            this.altura = altura;
         } else {
             this.id = -1; //aca va un error en realidad
         }
-        this.edges = new ArrayList<>();
     }
 
     public int getId() {
@@ -27,6 +31,14 @@ public abstract class Operador {
 
     public int getPosicion() {
         return this.posicion;
+    }
+
+    public List<Mensaje> getConsola() {
+        return this.consola;
+    }
+
+    public int getAltura() {
+        return this.altura;
     }
 
     public void setPosicionInicial(int largoOrbita) {
