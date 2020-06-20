@@ -39,6 +39,7 @@ public class Satelite extends Operador {
             this.setPosicion(0);
         }
         this.actualizarEstadoEdges();
+        this.actualizarDistanciaEdge();
     }
 
     public void actualizarEstadoEdges() {
@@ -53,8 +54,20 @@ public class Satelite extends Operador {
         }
     }
 
+    public void actualizarDistanciaEdge() {
+        List<Edge> edges = this.getEdges();
+        for (Edge arista : edges) {
+            if (arista.getDestino() instanceof Satelite) {
+                int distancia = Math.abs(this.getPosicion() - arista.getDestino().getPosicion());
+                arista.setDistancia(distancia);
+                Edge aristaDestino = arista.getDestino().getAristaDestino(this.getId()); //aca obtengo la arista desde el lado del destino
+                aristaDestino.setDistancia(distancia);
+            }
+        }
+    }
+
     private boolean dentroRango(int posicion) {
-        return this.getPosicion() - this.diametroVisible < posicion && this.getPosicion() + this.diametroVisible > posicion;
+        return this.getPosicion() - this.diametroVisible <= posicion && this.getPosicion() + this.diametroVisible >= posicion;
     }
 
 

@@ -7,6 +7,7 @@ import orbitas.Media;
 import red.Estacion;
 import red.Red;
 import red.Satelite;
+import red.SateliteGeo;
 
 import java.util.List;
 
@@ -29,9 +30,16 @@ public class Tierra {
         this.orbitaBaja = new Baja(2000, 1500, 4000);
 
         Satelite satelite1 = new Satelite(1, 50, 15000, 100);
+        Satelite satelite2 = new Satelite(2, 150, 10000, 100);
+        SateliteGeo sateliteGeo = new SateliteGeo(4,36000,1000);
 
 
         this.orbitaMedia.addSatelite(satelite1);
+        this.orbitaMedia.addSatelite(satelite2);
+        this.orbitaGeo.addSatelite(sateliteGeo);
+
+        satelite2.addEdge(satelite1,1000);
+        satelite2.addEdge(sateliteGeo,1000);
 
         Estacion estacion = new Estacion(3, largoTierra);
 
@@ -39,6 +47,8 @@ public class Tierra {
 
         this.redSatelital.addEstructura(estacion);
         this.redSatelital.addEstructura(satelite1);
+        this.redSatelital.addEstructura(satelite2);
+        this.redSatelital.addEstructura(sateliteGeo);
 
         //   estacion.enviarMensaje(this.redSatelital, new Mensaje(1, estacion, estacion1));
     }
