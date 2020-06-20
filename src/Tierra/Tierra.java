@@ -19,7 +19,7 @@ public class Tierra {
     private Media orbitaMedia;
     private Baja orbitaBaja;
 
-    private static int largoTierra = Orbita.getMaximoLargo() - 5000;
+    private static int largoTierra = Orbita.getMaximoLargo();
 
     public Tierra() {
 
@@ -27,8 +27,8 @@ public class Tierra {
         this.redSatelital = new Red();
 
         this.orbitaGeo = new GeoSincrona(360000, 36000, Orbita.getMaximoLargo());  //orbita mas larga porque es la mas lejana
-        this.orbitaMedia = new Media(20000, 10000, Orbita.getMaximoLargo() - 2000); //a estas orbitas le bajo un cacho el tamaño para que tenga sentido
-        this.orbitaBaja = new Baja(2000, 1500, Orbita.getMaximoLargo() - 4000); //los numeros se eligieron porque si
+        this.orbitaMedia = new Media(20000, 10000, Orbita.getMaximoLargo()); //a estas orbitas le bajo un cacho el tamaño para que tenga sentido
+        this.orbitaBaja = new Baja(2000, 1500, Orbita.getMaximoLargo()); //los numeros se eligieron porque si
 
         Satelite satelite1 = new Satelite(1, 50, 15000, 1000);
         Satelite satelite2 = new Satelite(2, 150, 10000, 1000);
@@ -42,7 +42,7 @@ public class Tierra {
         satelite2.addEdge(satelite1);
         satelite2.addEdge(sateliteGeo);
 
-        Estacion estacion = new Estacion(3, largoTierra, 0);
+        Estacion estacion = new Estacion(3, largoTierra);
         Estacion estacion1 = new Estacion(5, largoTierra);
 
         estacion.addEdge(satelite1);

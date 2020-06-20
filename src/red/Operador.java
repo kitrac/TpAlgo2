@@ -1,6 +1,7 @@
 package red;
 
-import mensaje.Mensaje;
+import javafx.scene.input.Mnemonic;
+import mensaje.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,18 +72,30 @@ public abstract class Operador {
         return vecinos;
     }
 
-
-    public boolean enviarMensaje(Red red, Mensaje mensaje) {
-
-        Operador origen = mensaje.getOrigen();
-        List<Operador> listaVecinos = origen.obtenerVecinos();
-
-        int indexDestino = listaVecinos.indexOf(mensaje.getDestino());
-
-        Operador vecino = listaVecinos.get(indexDestino);
-
-        return true;
+    public static void enviarMensaje(PingRequest mensaje) {
+        mensaje.enviar();
     }
+
+    public static void enviarMensaje(PingReply mensaje) {
+        mensaje.enviar();
+    }
+
+    public static void enviarMensaje(InfoRequest mensaje) {
+        mensaje.enviar();
+    }
+
+    public static void enviarMensaje(InfoReply mensaje) {
+        mensaje.enviar();
+    }
+
+    public abstract void recibirMensaje(PingRequest mensaje);
+
+    public abstract void recibirMensaje(PingReply mensaje);
+
+    public abstract void recibirMensaje(InfoRequest mensaje);
+
+    public abstract void recibirMensaje(InfoReply mensaje);
+
 
     @Override
     public String toString() {

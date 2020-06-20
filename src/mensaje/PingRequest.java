@@ -4,12 +4,10 @@ import red.Operador;
 
 import java.util.List;
 
-public class PingReply extends Mensaje {
-    private int latencia;
+public class PingRequest extends Mensaje{
 
-    public PingReply(String id, Operador origen, Operador destino, contenido.PingReply contenido, int latencia) {
-        super(id + "Reply", origen, destino, contenido);
-        this.latencia = latencia;
+    public PingRequest(String id, Operador origen, Operador destino) {
+        super(id + "Request", origen, destino);
     }
 
     @Override

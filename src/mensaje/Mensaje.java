@@ -1,35 +1,43 @@
 package mensaje;
 
+import contenido.Contenido;
 import red.Operador;
 
-public class Mensaje {
+public abstract class Mensaje {
 
-    private final int id;
-    private final Operador origen;
+    private String id;
+    private Operador origen;
     private final Operador destino;
     private final Contenido contenido;
+    private final Operador creador;
 
 
-    public Mensaje(int id, Operador origen, Operador destino) {
+    public Mensaje(String id, Operador origen, Operador destino) {
         this.id = id;
+        this.creador = origen;
         this.origen = origen;
         this.destino = destino;
         this.contenido = null;
     }
 
-        public Mensaje(int id, Operador origen, Operador destino, Contenido contenido) {
+    public Mensaje(String id, Operador origen, Operador destino, Contenido contenido) {
         this.id = id;
+        this.creador = origen;
         this.origen = origen;
         this.destino = destino;
         this.contenido = contenido;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
     public Operador getOrigen() {
         return origen;
+    }
+
+    public Operador getCreador() {
+        return this.creador;
     }
 
     public Operador getDestino() {
@@ -39,6 +47,12 @@ public class Mensaje {
     public Contenido getContenido() {
         return contenido;
     }
+
+    public void setOrigen(Operador origen) {
+        this.origen = origen;
+    }
+
+    public abstract void enviar();
 
     @Override
     public String toString() {
