@@ -19,23 +19,16 @@ public class Estacion extends Operador {
     public void addEdge(Satelite destino) {
         Edge arista = new Edge(this, destino, destino.getAltura());
         this.getEdges().add(arista);
+
+        Edge aristaVuelta = new Edge(destino, this, destino.getAltura());
+        destino.getEdges().add(aristaVuelta);
     }
 
     public void addEdge(Estacion destino, int distancia) {
         Edge arista = new Edge(this, destino, distancia);
         this.getEdges().add(arista);
-    }
-
-    public boolean enviarMensaje(Red red, Mensaje mensaje) {
-
-        Operador origen = mensaje.getOrigen();
-        List<Operador> listaVecinos = origen.obtenerVecinos();
-
-        int indexDestino = listaVecinos.indexOf(mensaje.getDestino());
-
-        Operador vecino = listaVecinos.get(indexDestino);
-
-        return true;
+        Edge aristaVuelta = new Edge(destino, this, distancia);
+        destino.getEdges().add(aristaVuelta);
     }
 
 

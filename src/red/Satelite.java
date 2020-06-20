@@ -15,6 +15,15 @@ public class Satelite extends Operador {
         this.diametroVisible = diametroVisible;
     }
 
+    //se agrega la arista de ida y vuelta "arista doble"
+    public void addEdge(Operador destino, double distancia) {
+        Edge arista = new Edge(this, destino, distancia);
+        this.getEdges().add(arista);
+
+        Edge aristaVuelta = new Edge(destino, this, distancia);
+        destino.getEdges().add(aristaVuelta);
+    }
+
     public int getDiametroVisible() {
         return this.diametroVisible;
     }
@@ -26,7 +35,7 @@ public class Satelite extends Operador {
 
     public void mover(int largoOrbita) {
         this.setPosicion(this.getPosicion() + this.velocidad);
-        if(this.getPosicion() > largoOrbita){
+        if (this.getPosicion() > largoOrbita) {
             this.setPosicion(0);
         }
         this.actualizarEstadoEdges();
@@ -35,12 +44,17 @@ public class Satelite extends Operador {
     public void actualizarEstadoEdges() {
         List<Edge> edges = this.getEdges();
         for (Edge arista : edges) {
-            arista.setEstado(this.dentroRango(arista.getDestino().getPosicion()));
+
+            boolean estado = this.dentroRango(arista.getDestino().getPosicion());
+            arista.setEstado(estado);
+
+            Edge aristaDestino = arista.getDestino().getAristaDestino(this.getId()); //aca obtengo la arista desde el lado del destino
+            aristaDestino.setEstado(estado);
         }
     }
 
     private boolean dentroRango(int posicion) {
-        return  this.getPosicion() - this.diametroVisible  < posicion && this.getPosicion() + this.diametroVisible > posicion;
+        return this.getPosicion() - this.diametroVisible < posicion && this.getPosicion() + this.diametroVisible > posicion;
     }
 
 

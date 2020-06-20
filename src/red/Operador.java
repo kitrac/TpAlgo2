@@ -41,14 +41,14 @@ public abstract class Operador {
         return edges;
     }
 
-
-    //se agrega la arista de ida y vuelta "arista doble"
-    public void addEdge(Operador destino, double distancia) {
-        Edge arista = new Edge(this, destino, distancia);
-        this.getEdges().add(arista);
-
-        Edge aristaVuelta = new Edge(destino, this, distancia);
-        destino.getEdges().add(aristaVuelta);
+    public Edge getAristaDestino(int id) {
+        Edge aristaSeleccionada = null;
+        for (Edge arista : this.edges) {
+            if (arista.getDestino().getId() == id) {
+                aristaSeleccionada = arista;
+            }
+        }
+        return aristaSeleccionada;
     }
 
     public List<Operador> obtenerVecinos() {
@@ -57,6 +57,19 @@ public abstract class Operador {
             vecinos.add(arista.getDestino());
         }
         return vecinos;
+    }
+
+
+    public boolean enviarMensaje(Red red, Mensaje mensaje) {
+
+        Operador origen = mensaje.getOrigen();
+        List<Operador> listaVecinos = origen.obtenerVecinos();
+
+        int indexDestino = listaVecinos.indexOf(mensaje.getDestino());
+
+        Operador vecino = listaVecinos.get(indexDestino);
+
+        return true;
     }
 
     @Override

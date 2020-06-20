@@ -28,26 +28,19 @@ public class Tierra {
         this.orbitaMedia = new Media(20000, 10000, 6000);
         this.orbitaBaja = new Baja(2000, 1500, 4000);
 
-        Satelite satelite3 = new Satelite(1, 50, 15000, 300);
-        Satelite satelite4 = new Satelite(4, 50, 1600, 300);
+        Satelite satelite1 = new Satelite(1, 50, 15000, 100);
 
-        satelite4.addEdge(satelite3, 200);
 
-        this.orbitaMedia.addSatelite(satelite3);
-        this.orbitaBaja.addSatelite(satelite4);
+        this.orbitaMedia.addSatelite(satelite1);
 
         Estacion estacion = new Estacion(3, largoTierra);
-        Estacion estacion1 = new Estacion(6, largoTierra);
 
-        estacion.addEdge(satelite3);
-        estacion.addEdge(estacion1, 1000);
+        estacion.addEdge(satelite1);
 
-        this.redSatelital.addEstructura(satelite3);
-        this.redSatelital.addEstructura(satelite4);
         this.redSatelital.addEstructura(estacion);
-        this.redSatelital.addEstructura(estacion1);
+        this.redSatelital.addEstructura(satelite1);
 
-        estacion.enviarMensaje(this.redSatelital, new Mensaje(1, estacion, estacion1));
+        //   estacion.enviarMensaje(this.redSatelital, new Mensaje(1, estacion, estacion1));
     }
 
 
