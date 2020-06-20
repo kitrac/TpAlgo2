@@ -7,7 +7,13 @@ public class Edge {
     private double distancia;
     private boolean estado;
 
-    public Edge(Operador origen, Operador destino, double distancia) {
+    public Edge(Operador origen, Operador destino) {
+        this.origen = origen;
+        this.destino = destino;
+        this.estado = true;
+    }
+
+    public Edge(Operador origen, Operador destino, int distancia) {
         this.origen = origen;
         this.destino = destino;
         this.distancia = distancia;

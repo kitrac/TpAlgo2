@@ -24,7 +24,9 @@ public class Estacion extends Operador {
         destino.getEdges().add(aristaVuelta);
     }
 
-    public void addEdge(Estacion destino, int distancia) {
+    public void addEdge(Estacion destino) {
+
+        int distancia = Math.abs(destino.getPosicion() - this.getPosicion());
         Edge arista = new Edge(this, destino, distancia);
         this.getEdges().add(arista);
         Edge aristaVuelta = new Edge(destino, this, distancia);

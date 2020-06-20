@@ -16,11 +16,11 @@ public class Satelite extends Operador {
     }
 
     //se agrega la arista de ida y vuelta "arista doble"
-    public void addEdge(Operador destino, double distancia) {
-        Edge arista = new Edge(this, destino, distancia);
+    public void addEdge(Operador destino) {
+        Edge arista = new Edge(this, destino);
         this.getEdges().add(arista);
 
-        Edge aristaVuelta = new Edge(destino, this, distancia);
+        Edge aristaVuelta = new Edge(destino, this);
         destino.getEdges().add(aristaVuelta);
     }
 

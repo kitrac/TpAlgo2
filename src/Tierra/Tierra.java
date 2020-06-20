@@ -4,6 +4,7 @@ import mensaje.Mensaje;
 import orbitas.Baja;
 import orbitas.GeoSincrona;
 import orbitas.Media;
+import orbitas.Orbita;
 import red.Estacion;
 import red.Red;
 import red.Satelite;
@@ -18,34 +19,37 @@ public class Tierra {
     private Media orbitaMedia;
     private Baja orbitaBaja;
 
-    private static int largoTierra = 3000;
+    private static int largoTierra = Orbita.getMaximoLargo() - 5000;
 
     public Tierra() {
 
 
         this.redSatelital = new Red();
 
-        this.orbitaGeo = new GeoSincrona(360000, 36000, 9000);
-        this.orbitaMedia = new Media(20000, 10000, 6000);
-        this.orbitaBaja = new Baja(2000, 1500, 4000);
+        this.orbitaGeo = new GeoSincrona(360000, 36000, Orbita.getMaximoLargo());
+        this.orbitaMedia = new Media(20000, 10000, Orbita.getMaximoLargo() - 2000);
+        this.orbitaBaja = new Baja(2000, 1500, Orbita.getMaximoLargo() - 4000);
 
         Satelite satelite1 = new Satelite(1, 50, 15000, 100);
         Satelite satelite2 = new Satelite(2, 150, 10000, 100);
-        SateliteGeo sateliteGeo = new SateliteGeo(4,36000,1000);
+        SateliteGeo sateliteGeo = new SateliteGeo(4, 36000, 1000);
 
 
         this.orbitaMedia.addSatelite(satelite1);
         this.orbitaMedia.addSatelite(satelite2);
         this.orbitaGeo.addSatelite(sateliteGeo);
 
-        satelite2.addEdge(satelite1,1000);
-        satelite2.addEdge(sateliteGeo,1000);
+        satelite2.addEdge(satelite1);
+        satelite2.addEdge(sateliteGeo);
 
         Estacion estacion = new Estacion(3, largoTierra);
+        Estacion estacion1 = new Estacion(5, largoTierra);
 
         estacion.addEdge(satelite1);
+        estacion.addEdge(estacion1);
 
         this.redSatelital.addEstructura(estacion);
+        this.redSatelital.addEstructura(estacion1);
         this.redSatelital.addEstructura(satelite1);
         this.redSatelital.addEstructura(satelite2);
         this.redSatelital.addEstructura(sateliteGeo);
