@@ -58,7 +58,7 @@ public class Satelite extends Operador {
         List<Edge> edges = this.getEdges();
         for (Edge arista : edges) {
             if (arista.getDestino() instanceof Satelite) {
-                int distancia = Math.abs(this.getPosicion() - arista.getDestino().getPosicion());
+                int distancia = Math.abs(this.getPosicion() - arista.getDestino().getPosicion()) + Math.abs(this.getAltura() - ((Satelite) arista.getDestino()).getAltura());
                 arista.setDistancia(distancia);
                 Edge aristaDestino = arista.getDestino().getAristaDestino(this.getId()); //aca obtengo la arista desde el lado del destino
                 aristaDestino.setDistancia(distancia);

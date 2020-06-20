@@ -26,12 +26,12 @@ public class Tierra {
 
         this.redSatelital = new Red();
 
-        this.orbitaGeo = new GeoSincrona(360000, 36000, Orbita.getMaximoLargo());
-        this.orbitaMedia = new Media(20000, 10000, Orbita.getMaximoLargo() - 2000);
-        this.orbitaBaja = new Baja(2000, 1500, Orbita.getMaximoLargo() - 4000);
+        this.orbitaGeo = new GeoSincrona(360000, 36000, Orbita.getMaximoLargo());  //orbita mas larga porque es la mas lejana
+        this.orbitaMedia = new Media(20000, 10000, Orbita.getMaximoLargo() - 2000); //a estas orbitas le bajo un cacho el tamaño para que tenga sentido
+        this.orbitaBaja = new Baja(2000, 1500, Orbita.getMaximoLargo() - 4000); //los numeros se eligieron porque si
 
-        Satelite satelite1 = new Satelite(1, 50, 15000, 100);
-        Satelite satelite2 = new Satelite(2, 150, 10000, 100);
+        Satelite satelite1 = new Satelite(1, 50, 15000, 1000);
+        Satelite satelite2 = new Satelite(2, 150, 10000, 1000);
         SateliteGeo sateliteGeo = new SateliteGeo(4, 36000, 1000);
 
 
