@@ -1,14 +1,13 @@
 package Tierra;
 
+import mensaje.InfoRequest;
 import mensaje.Mensaje;
+import mensaje.PingRequest;
 import orbitas.Baja;
 import orbitas.GeoSincrona;
 import orbitas.Media;
 import orbitas.Orbita;
-import red.Estacion;
-import red.Red;
-import red.Satelite;
-import red.SateliteGeo;
+import red.*;
 
 import java.util.List;
 
@@ -30,29 +29,31 @@ public class Tierra {
         this.orbitaMedia = new Media(20000, 10000, Orbita.getMaximoLargo()); //a estas orbitas le bajo un cacho el tamaño para que tenga sentido
         this.orbitaBaja = new Baja(2000, 1500, Orbita.getMaximoLargo()); //los numeros se eligieron porque si
 
-        Satelite satelite1 = new Satelite(1, 50, 15000, 1000);
-        Satelite satelite2 = new Satelite(2, 150, 10000, 1000);
-        SateliteGeo sateliteGeo = new SateliteGeo(4, 36000, 1000);
+        Comunicacion satelite1 = new Comunicacion(1, 36000, 30);
+        Comunicacion satelite2 = new Comunicacion(2, 36000, 30);
+        Comunicacion sateliteGeo = new Comunicacion(4, 36000, 10);
 
 
-        this.orbitaMedia.addSatelite(satelite1);
-        this.orbitaMedia.addSatelite(satelite2);
+        this.orbitaGeo.addSatelite(satelite1);
+        this.orbitaGeo.addSatelite(satelite2);
         this.orbitaGeo.addSatelite(sateliteGeo);
 
-        satelite2.addEdge(satelite1);
-        satelite2.addEdge(sateliteGeo);
+        satelite1.addEdge(sateliteGeo);
+        sateliteGeo.addEdge(satelite2);
 
         Estacion estacion = new Estacion(3, largoTierra);
         Estacion estacion1 = new Estacion(5, largoTierra);
-
-        estacion.addEdge(satelite1);
-        estacion.addEdge(estacion1);
 
         this.redSatelital.addEstructura(estacion);
         this.redSatelital.addEstructura(estacion1);
         this.redSatelital.addEstructura(satelite1);
         this.redSatelital.addEstructura(satelite2);
         this.redSatelital.addEstructura(sateliteGeo);
+
+        for (Satelite satelite : this.redSatelital.getSatelites()) {
+            satelite.actualizarEstadoEdges();
+            satelite.actualizarDistanciaEdge();
+        }
 
         //   estacion.enviarMensaje(this.redSatelital, new Mensaje(1, estacion, estacion1));
     }
@@ -63,9 +64,11 @@ public class Tierra {
         this.orbitaMedia.moverSatelites();
 
         List<Estacion> estaciones = this.redSatelital.getEstaciones();
+        List<Satelite> satelites = this.redSatelital.getSatelites();
 
-        System.out.println(this.redSatelital);
+        satelites.get(0).enviarMensaje(new PingRequest("Hola", satelites.get(0), satelites.get(1)));
 
+        System.out.println(redSatelital);
     }
 
 }

@@ -1,10 +1,11 @@
 package mensaje;
 
+import red.Edge;
 import red.Operador;
 
 import java.util.List;
 
-public class PingRequest extends Mensaje{
+public class PingRequest extends Mensaje {
 
     public PingRequest(String id, Operador origen, Operador destino) {
         super(id + "Request", origen, destino);
@@ -13,11 +14,18 @@ public class PingRequest extends Mensaje{
     @Override
     public void enviar() {
         Operador origen = this.getOrigen();
+        List<Edge> edges = origen.getEdges();
+        for (Edge arista : edges) {
 
-        List<Operador> listaVecinos = origen.obtenerVecinos();
+            if (arista.getEstado()) {
+                arista.getDestino().recibirMensaje(this);
+            }
 
-        for (Operador operador:listaVecinos) {
-            operador.recibirMensaje(this);
         }
+    }
+
+    @Override
+    public void reenviarMensaje() {
+
     }
 }

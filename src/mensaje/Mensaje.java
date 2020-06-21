@@ -54,8 +54,12 @@ public abstract class Mensaje {
 
     public abstract void enviar();
 
+    public abstract void reenviarMensaje();
+
     @Override
     public String toString() {
         return "" + this.id + " " + this.origen + " " + this.destino + " " + this.contenido;
     }
+
+
 }

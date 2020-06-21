@@ -1,5 +1,10 @@
 package red;
 
+import mensaje.InfoReply;
+import mensaje.InfoRequest;
+import mensaje.PingReply;
+import mensaje.PingRequest;
+
 import java.util.List;
 
 public class Satelite extends Operador {
@@ -20,6 +25,8 @@ public class Satelite extends Operador {
 
         Edge aristaVuelta = new Edge(destino, this);
         destino.getEdges().add(aristaVuelta);
+
+        this.actualizarEstadoEdges();
     }
 
     public int getDiametroVisible() {
@@ -46,7 +53,7 @@ public class Satelite extends Operador {
         }
     }
 
-    public void actualizarDistanciaEdge() {
+    public  void actualizarDistanciaEdge() {
         List<Edge> edges = this.getEdges();
         for (Edge arista : edges) {
             int distanciaX = Math.abs(this.getPosicion() - arista.getDestino().getPosicion());
@@ -63,6 +70,26 @@ public class Satelite extends Operador {
         return this.getPosicion() - this.diametroVisible <= posicion && this.getPosicion() + this.diametroVisible >= posicion;
     }
 
+
+    @Override
+    public void recibirMensaje(PingRequest mensaje) {
+
+    }
+
+    @Override
+    public void recibirMensaje(PingReply mensaje) {
+
+    }
+
+    @Override
+    public void recibirMensaje(InfoRequest mensaje) {
+
+    }
+
+    @Override
+    public void recibirMensaje(InfoReply mensaje) {
+
+    }
 
     @Override
     public String toString() {

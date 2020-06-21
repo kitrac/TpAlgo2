@@ -32,6 +32,10 @@ public class Edge {
         return destino;
     }
 
+    public boolean getEstado() {
+        return estado;
+    }
+
     public void setEstado(boolean estado) {
         this.estado = estado;
     }

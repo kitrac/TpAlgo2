@@ -1,6 +1,6 @@
 package red;
 
-import mensaje.Mensaje;
+import mensaje.*;
 
 public class Estacion extends Operador {
 
@@ -9,13 +9,29 @@ public class Estacion extends Operador {
         this.setPosicionInicial(largoTierra);
     }
 
+    @Override
+    public void recibirMensaje(PingRequest mensaje) {
+
+    }
+
+    @Override
+    public void recibirMensaje(PingReply mensaje) {
+
+    }
+
+    @Override
+    public void recibirMensaje(InfoRequest mensaje) {
+
+    }
+
+    @Override
+    public void recibirMensaje(InfoReply mensaje) {
+
+    }
+
     public Estacion(int id, int largoTierra, int altura) {
         super(id, altura);
         this.setPosicionInicial(largoTierra);
-    }
-
-    public Mensaje generarMensaje(int id, Operador destino, String contenido) {
-        return new Mensaje(id, this, destino);
     }
 
     public void addEdge(Satelite destino) {

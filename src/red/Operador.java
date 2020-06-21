@@ -72,21 +72,38 @@ public abstract class Operador {
         return vecinos;
     }
 
-    public static void enviarMensaje(PingRequest mensaje) {
+    public void enviarMensaje(PingRequest mensaje) {
         mensaje.enviar();
     }
 
-    public static void enviarMensaje(PingReply mensaje) {
+    public void enviarMensaje(PingReply mensaje) {
         mensaje.enviar();
     }
 
-    public static void enviarMensaje(InfoRequest mensaje) {
+    public void enviarMensaje(InfoRequest mensaje) {
         mensaje.enviar();
     }
 
-    public static void enviarMensaje(InfoReply mensaje) {
+    public void enviarMensaje(InfoReply mensaje) {
         mensaje.enviar();
     }
+
+    public void reenviarMensaje(PingRequest mensaje) {
+        mensaje.reenviarMensaje();
+    }
+
+    public void reenviarMensaje(PingReply mensaje) {
+        mensaje.reenviarMensaje();
+    }
+
+    public void reenviarMensaje(InfoRequest mensaje) {
+        mensaje.reenviarMensaje();
+    }
+
+    public void reenviarMensaje(InfoReply mensaje) {
+        mensaje.reenviarMensaje();
+    }
+
 
     public abstract void recibirMensaje(PingRequest mensaje);
 

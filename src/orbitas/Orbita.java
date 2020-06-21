@@ -15,7 +15,7 @@ public abstract class Orbita {
     private final int alturaMinima;
     private final int alturaMaxima;
     private final int largo;
-    private static int maximoLargo = 10000;
+    private static int maximoLargo = 100;
     private static int minimoLargo = 0;
 
     public Orbita(int alturaMaxima, int alturaMinima, int largo) {
