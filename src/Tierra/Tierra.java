@@ -29,17 +29,21 @@ public class Tierra {
         this.orbitaMedia = new Media(20000, 10000, Orbita.getMaximoLargo()); //a estas orbitas le bajo un cacho el tamaño para que tenga sentido
         this.orbitaBaja = new Baja(2000, 1500, Orbita.getMaximoLargo()); //los numeros se eligieron porque si
 
-        Comunicacion satelite1 = new Comunicacion(1, 36000, 30);
-        Comunicacion satelite2 = new Comunicacion(2, 36000, 30);
-        Comunicacion sateliteGeo = new Comunicacion(4, 36000, 10);
+        Comunicacion satelite1 = new Comunicacion(1, 36000, 100);
+        Comunicacion satelite2 = new Comunicacion(2, 36000, 100);
+        Comunicacion sateliteGeo = new Comunicacion(4, 36000, 100);
+        Satelite satelite7 = new Satelite(7,10,11000,20);
 
 
         this.orbitaGeo.addSatelite(satelite1);
         this.orbitaGeo.addSatelite(satelite2);
         this.orbitaGeo.addSatelite(sateliteGeo);
 
+        this.orbitaMedia.addSatelite(satelite7);
+
         satelite1.addEdge(sateliteGeo);
         sateliteGeo.addEdge(satelite2);
+        satelite1.addEdge(satelite7);
 
         Estacion estacion = new Estacion(3, largoTierra);
         Estacion estacion1 = new Estacion(5, largoTierra);
@@ -49,6 +53,7 @@ public class Tierra {
         this.redSatelital.addEstructura(satelite1);
         this.redSatelital.addEstructura(satelite2);
         this.redSatelital.addEstructura(sateliteGeo);
+        this.redSatelital.addEstructura(satelite7);
 
         for (Satelite satelite : this.redSatelital.getSatelites()) {
             satelite.actualizarEstadoEdges();

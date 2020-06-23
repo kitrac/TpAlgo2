@@ -22,6 +22,7 @@ public class Comunicacion extends SateliteGeo {
 
     public void recibirMensaje(PingReply mensaje) {
         if (mensaje.getDestino().getId() == this.getId()) {
+            System.out.println(mensaje.getContenido());
         } else if (mensaje.getContenido().getReenvio()) {
             mensaje.setOrigen(this);
             this.reenviarMensaje(mensaje);

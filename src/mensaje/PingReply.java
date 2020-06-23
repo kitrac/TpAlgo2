@@ -34,4 +34,11 @@ public class PingReply extends Mensaje {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return "PingReply{" +
+                "latencia=" + latencia +
+                '}';
+    }
 }

@@ -26,6 +26,12 @@ public class PingRequest extends Mensaje {
 
     @Override
     public void reenviarMensaje() {
-
+        Operador origen = this.getOrigen();
+        List<Edge> edges = origen.getEdges();
+        for (Edge arista : edges) {
+            if (arista.getEstado()) {
+                arista.getDestino().recibirMensaje(this);
+            }
+        }
     }
 }
