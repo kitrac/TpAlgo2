@@ -11,10 +11,11 @@ public class Comunicacion extends SateliteGeo {
 
     public void recibirMensaje(PingRequest mensaje) {
         if (mensaje.getDestino().getId() == this.getId()) {
-            PingReply respuesta = new PingReply(mensaje.getId(), this, mensaje.getCreador(), new contenido.PingReply(0), 0);
+            PingReply respuesta = new PingReply(mensaje.getId(), this, mensaje.getCreador(), new contenido.PingReply(0));
             this.enviarMensaje(respuesta);
         } else if (mensaje.getContenido().getReenvio()) {
             mensaje.setOrigen(this);
+            mensaje.addOperadorRecorrido(this);
             this.reenviarMensaje(mensaje);
         }
         this.getConsola().add(mensaje);
@@ -25,7 +26,9 @@ public class Comunicacion extends SateliteGeo {
             System.out.println(mensaje.getContenido());
         } else if (mensaje.getContenido().getReenvio()) {
             mensaje.setOrigen(this);
+            mensaje.addOperadorRecorrido(this);
             this.reenviarMensaje(mensaje);
+
         }
         this.getConsola().add(mensaje);
     }

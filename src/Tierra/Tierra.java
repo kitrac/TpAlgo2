@@ -29,10 +29,10 @@ public class Tierra {
         this.orbitaMedia = new Media(20000, 10000, Orbita.getMaximoLargo()); //a estas orbitas le bajo un cacho el tamaño para que tenga sentido
         this.orbitaBaja = new Baja(2000, 1500, Orbita.getMaximoLargo()); //los numeros se eligieron porque si
 
-        Comunicacion satelite1 = new Comunicacion(1, 36000, 100);
-        Comunicacion satelite2 = new Comunicacion(2, 36000, 100);
-        Comunicacion sateliteGeo = new Comunicacion(4, 36000, 100);
-        Satelite satelite7 = new Satelite(7,10,11000,20);
+        Comunicacion satelite1 = new Comunicacion(1, 36000, 10000);
+        Comunicacion satelite2 = new Comunicacion(2, 36000, 10000);
+        Comunicacion sateliteGeo = new Comunicacion(4, 36000, 10000);
+        Meteorologico satelite7 = new Meteorologico(7,300,11000,300);
 
 
         this.orbitaGeo.addSatelite(satelite1);
@@ -73,7 +73,7 @@ public class Tierra {
 
         satelites.get(0).enviarMensaje(new PingRequest("Hola", satelites.get(0), satelites.get(1)));
 
-        System.out.println(redSatelital);
+      //  System.out.println(redSatelital);
     }
 
 }

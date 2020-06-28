@@ -7,7 +7,7 @@ import mensaje.PingRequest;
 
 import java.util.List;
 
-public class Satelite extends Operador {
+public abstract class Satelite extends Operador {
 
     private int velocidad;
     private int diametroVisible;

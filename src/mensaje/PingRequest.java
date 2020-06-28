@@ -16,11 +16,9 @@ public class PingRequest extends Mensaje {
         Operador origen = this.getOrigen();
         List<Edge> edges = origen.getEdges();
         for (Edge arista : edges) {
-
             if (arista.getEstado()) {
                 arista.getDestino().recibirMensaje(this);
             }
-
         }
     }
 
@@ -29,7 +27,7 @@ public class PingRequest extends Mensaje {
         Operador origen = this.getOrigen();
         List<Edge> edges = origen.getEdges();
         for (Edge arista : edges) {
-            if (arista.getEstado()) {
+            if (arista.getEstado() && !this.getRecorrido().contains(arista.getDestino())) {
                 arista.getDestino().recibirMensaje(this);
             }
         }

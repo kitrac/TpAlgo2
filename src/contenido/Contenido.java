@@ -10,4 +10,5 @@ public class Contenido {
     public boolean getReenvio() {
         return this.reenvio;
     }
+
 }

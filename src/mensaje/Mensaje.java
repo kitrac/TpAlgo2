@@ -3,6 +3,7 @@ package mensaje;
 import contenido.Contenido;
 import red.Operador;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Mensaje {
@@ -11,21 +12,19 @@ public abstract class Mensaje {
     private Operador origen;
     private final Operador destino;
     private final Contenido contenido;
-    private final Operador creador; // se puede sacar esto y usar el primero del recorrido
     private List<Operador> recorrido;
 
 
     public Mensaje(String id, Operador origen, Operador destino) {
         this.id = id;
-        this.creador = origen;
         this.origen = origen;
         this.destino = destino;
         this.contenido = new Contenido(true);
+        this.recorrido = new ArrayList<>();
     }
 
     public Mensaje(String id, Operador origen, Operador destino, Contenido contenido) {
         this.id = id;
-        this.creador = origen;
         this.origen = origen;
         this.destino = destino;
         this.contenido = contenido;
@@ -40,7 +39,7 @@ public abstract class Mensaje {
     }
 
     public Operador getCreador() {
-        return this.creador;
+        return this.recorrido.get(0);
     }
 
     public Operador getDestino() {
@@ -51,8 +50,16 @@ public abstract class Mensaje {
         return contenido;
     }
 
+    public List<Operador> getRecorrido() {
+        return recorrido;
+    }
+
     public void setOrigen(Operador origen) {
         this.origen = origen;
+    }
+
+    public void addOperadorRecorrido(Operador operador) {
+        this.recorrido.add(operador);
     }
 
     public abstract void enviar();
