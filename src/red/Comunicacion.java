@@ -1,5 +1,7 @@
 package red;
 
+import mensaje.InfoReply;
+import mensaje.InfoRequest;
 import mensaje.PingReply;
 import mensaje.PingRequest;
 
@@ -31,5 +33,21 @@ public class Comunicacion extends SateliteGeo {
 
         }
         this.getConsola().add(mensaje);
+    }
+
+    public void reenviarMensaje(PingRequest mensaje) {
+        mensaje.reenviarMensaje();
+    }
+
+    public void reenviarMensaje(PingReply mensaje) {
+        mensaje.reenviarMensaje();
+    }
+
+    public void reenviarMensaje(InfoRequest mensaje) {
+        mensaje.reenviarMensaje();
+    }
+
+    public void reenviarMensaje(InfoReply mensaje) {
+        mensaje.reenviarMensaje();
     }
 }

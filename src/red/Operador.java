@@ -88,22 +88,6 @@ public abstract class Operador {
         mensaje.enviar();
     }
 
-    public void reenviarMensaje(PingRequest mensaje) {
-        mensaje.reenviarMensaje();
-    }
-
-    public void reenviarMensaje(PingReply mensaje) {
-        mensaje.reenviarMensaje();
-    }
-
-    public void reenviarMensaje(InfoRequest mensaje) {
-        mensaje.reenviarMensaje();
-    }
-
-    public void reenviarMensaje(InfoReply mensaje) {
-        mensaje.reenviarMensaje();
-    }
-
 
     public abstract void recibirMensaje(PingRequest mensaje);
 
