@@ -10,7 +10,7 @@ public class Comunicacion extends SateliteGeo {
         super(id, altura, diametroVisible);
     }
 
-
+    @Override
     public void recibirMensaje(PingRequest mensaje) {
         if (mensaje.getDestino().getId() == this.getId()) {
             PingReply respuesta = new PingReply(mensaje.getId(), this, mensaje.getCreador(), new contenido.PingReply(0));
@@ -23,6 +23,7 @@ public class Comunicacion extends SateliteGeo {
         this.getConsola().add(mensaje);
     }
 
+    @Override
     public void recibirMensaje(PingReply mensaje) {
         if (mensaje.getDestino().getId() == this.getId()) {
             System.out.println(mensaje.getContenido());
@@ -33,6 +34,16 @@ public class Comunicacion extends SateliteGeo {
 
         }
         this.getConsola().add(mensaje);
+    }
+
+    @Override
+    public void recibirMensaje(InfoRequest mensaje) {
+
+    }
+
+    @Override
+    public void recibirMensaje(InfoReply mensaje) {
+
     }
 
     public void reenviarMensaje(PingRequest mensaje) {

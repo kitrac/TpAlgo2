@@ -72,26 +72,6 @@ public abstract class Satelite extends Operador {
 
 
     @Override
-    public void recibirMensaje(PingRequest mensaje) {
-
-    }
-
-    @Override
-    public void recibirMensaje(PingReply mensaje) {
-
-    }
-
-    @Override
-    public void recibirMensaje(InfoRequest mensaje) {
-
-    }
-
-    @Override
-    public void recibirMensaje(InfoReply mensaje) {
-
-    }
-
-    @Override
     public String toString() {
         return "Satelite id = " + this.getId() + " altura = " + this.getAltura() + " posicion = " + this.getPosicion() + " conexiones = " + this.getEdges() + "\n";
     }
