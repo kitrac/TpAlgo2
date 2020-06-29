@@ -32,7 +32,7 @@ public class Tierra {
         Comunicacion satelite1 = new Comunicacion(1, 36000, 10000);
         Comunicacion satelite2 = new Comunicacion(2, 36000, 10000);
         Comunicacion sateliteGeo = new Comunicacion(4, 36000, 10000);
-        Meteorologico satelite7 = new Meteorologico(7,300,11000,300);
+        Meteorologico satelite7 = new Meteorologico(7,324,11000,300);
 
 
         this.orbitaGeo.addSatelite(satelite1);
@@ -47,6 +47,8 @@ public class Tierra {
 
         Estacion estacion = new Estacion(3, largoTierra);
         Estacion estacion1 = new Estacion(5, largoTierra);
+
+        estacion.addEdge(satelite7);
 
         this.redSatelital.addEstructura(estacion);
         this.redSatelital.addEstructura(estacion1);
@@ -69,8 +71,7 @@ public class Tierra {
 
         List<Estacion> estaciones = this.redSatelital.getEstaciones();
         List<Satelite> satelites = this.redSatelital.getSatelites();
-
-        satelites.get(0).enviarMensaje(new InfoRequest("Hola", satelites.get(0), satelites.get(1)));
+        estaciones.get(0).enviarMensaje(new InfoRequest("Hola", estaciones.get(0), satelites.get(3)));
 
       //  System.out.println(redSatelital);
     }

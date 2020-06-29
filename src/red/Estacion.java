@@ -9,6 +9,7 @@ public class Estacion extends Operador {
         this.setPosicionInicial(largoTierra);
     }
 
+
     @Override
     public void recibirMensaje(PingRequest mensaje) {
 
@@ -21,12 +22,18 @@ public class Estacion extends Operador {
 
     @Override
     public void recibirMensaje(InfoRequest mensaje) {
-
+        if (mensaje.getDestino().getId() == this.getId()) {
+            System.out.println(mensaje.getContenido());
+        }
+        this.addMensajeEntrada(mensaje);
     }
 
     @Override
     public void recibirMensaje(InfoReply mensaje) {
-
+        if (mensaje.getDestino().getId() == this.getId()) {
+            System.out.println(mensaje.getContenido());
+        }
+        this.addMensajeEntrada(mensaje);
     }
 
     public Estacion(int id, int largoTierra, int altura) {

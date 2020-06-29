@@ -21,6 +21,7 @@ public abstract class Mensaje {
         this.destino = destino;
         this.contenido = new Contenido(true);
         this.recorrido = new ArrayList<>();
+        this.addOperadorRecorrido(origen);
     }
 
     public Mensaje(String id, Operador origen, Operador destino, Contenido contenido) {
@@ -28,6 +29,8 @@ public abstract class Mensaje {
         this.origen = origen;
         this.destino = destino;
         this.contenido = contenido;
+        this.recorrido = new ArrayList<>();
+        this.addOperadorRecorrido(origen);
     }
 
     public String getId() {
