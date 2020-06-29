@@ -18,9 +18,10 @@ public class Comunicacion extends SateliteGeo {
         } else if (mensaje.getContenido().getReenvio()) {
             mensaje.setOrigen(this);
             mensaje.addOperadorRecorrido(this);
+            this.addMensajeSalida(mensaje);
             this.reenviarMensaje(mensaje);
         }
-        this.getConsola().add(mensaje);
+        this.addMensajeEntrada(mensaje);
     }
 
     @Override
@@ -30,20 +31,36 @@ public class Comunicacion extends SateliteGeo {
         } else if (mensaje.getContenido().getReenvio()) {
             mensaje.setOrigen(this);
             mensaje.addOperadorRecorrido(this);
+            this.addMensajeSalida(mensaje);
             this.reenviarMensaje(mensaje);
 
         }
-        this.getConsola().add(mensaje);
+        this.addMensajeEntrada(mensaje);
     }
 
     @Override
     public void recibirMensaje(InfoRequest mensaje) {
-
+        if (mensaje.getDestino().getId() == this.getId()) {
+            InfoReply respuesta = new InfoReply(mensaje.getId(), this, mensaje.getCreador(), new contenido.InfoReply(true, this.getId(), 0));
+            this.enviarMensaje(respuesta);
+        } else if (mensaje.getContenido().getReenvio()) {
+            mensaje.setOrigen(this);
+            mensaje.addOperadorRecorrido(this);
+            this.reenviarMensaje(mensaje);
+        }
+        this.addMensajeEntrada(mensaje);
     }
 
     @Override
     public void recibirMensaje(InfoReply mensaje) {
-
+        if (mensaje.getDestino().getId() == this.getId()) {
+            System.out.println(mensaje.getContenido());
+        } else if (mensaje.getContenido().getReenvio()) {
+            mensaje.setOrigen(this);
+            mensaje.addOperadorRecorrido(this);
+            this.reenviarMensaje(mensaje);
+        }
+        this.addMensajeEntrada(mensaje);
     }
 
     public void reenviarMensaje(PingRequest mensaje) {

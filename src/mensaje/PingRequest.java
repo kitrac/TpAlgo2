@@ -8,7 +8,7 @@ import java.util.List;
 public class PingRequest extends Mensaje {
 
     public PingRequest(String id, Operador origen, Operador destino) {
-        super(id + "Request", origen, destino);
+        super(id + "-Request", origen, destino);
     }
 
     @Override

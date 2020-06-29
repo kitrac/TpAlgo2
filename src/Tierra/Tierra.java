@@ -25,9 +25,9 @@ public class Tierra {
 
         this.redSatelital = new Red();
 
-        this.orbitaGeo = new GeoSincrona(360000, 36000, Orbita.getMaximoLargo());  //orbita mas larga porque es la mas lejana
-        this.orbitaMedia = new Media(20000, 10000, Orbita.getMaximoLargo()); //a estas orbitas le bajo un cacho el tamaño para que tenga sentido
-        this.orbitaBaja = new Baja(2000, 1500, Orbita.getMaximoLargo()); //los numeros se eligieron porque si
+        this.orbitaGeo = new GeoSincrona(360000, 36000, Orbita.getMaximoLargo());
+        this.orbitaMedia = new Media(20000, 10000, Orbita.getMaximoLargo());
+        this.orbitaBaja = new Baja(2000, 1500, Orbita.getMaximoLargo());
 
         Comunicacion satelite1 = new Comunicacion(1, 36000, 10000);
         Comunicacion satelite2 = new Comunicacion(2, 36000, 10000);
@@ -60,7 +60,6 @@ public class Tierra {
             satelite.actualizarDistanciaEdge();
         }
 
-        //   estacion.enviarMensaje(this.redSatelital, new Mensaje(1, estacion, estacion1));
     }
 
 
@@ -71,7 +70,7 @@ public class Tierra {
         List<Estacion> estaciones = this.redSatelital.getEstaciones();
         List<Satelite> satelites = this.redSatelital.getSatelites();
 
-        satelites.get(0).enviarMensaje(new PingRequest("Hola", satelites.get(0), satelites.get(1)));
+        satelites.get(0).enviarMensaje(new InfoRequest("Hola", satelites.get(0), satelites.get(1)));
 
       //  System.out.println(redSatelital);
     }

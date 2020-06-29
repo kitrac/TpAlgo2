@@ -8,7 +8,7 @@ import java.util.List;
 public class PingReply extends Mensaje {
 
     public PingReply(String id, Operador origen, Operador destino, contenido.PingReply contenido) {
-        super(id + "Reply", origen, destino, contenido);
+        super(id + "-Reply", origen, destino, contenido);
     }
 
     @Override

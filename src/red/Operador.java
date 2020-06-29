@@ -21,6 +21,7 @@ public abstract class Operador {
             Operador.listaIds.add(this.id);
             this.edges = new ArrayList<>();
             this.consolaEntrada = new ArrayList<>();
+            this.consolaSalida = new ArrayList<>();
             this.altura = altura;
         } else {
             this.id = -1; //aca va un error en realidad
