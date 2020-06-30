@@ -11,8 +11,7 @@ public abstract class Operador {
     private List<Edge> edges;
     private static List<Integer> listaIds = new ArrayList<>();
     private int posicion; //posicion en la orbita o tierra;
-    private List<Mensaje> consolaEntrada;
-    private List<Mensaje> consolaSalida;
+    private Consola consola;
     private int altura;
 
     public Operador(int id, int altura) {
@@ -20,8 +19,7 @@ public abstract class Operador {
             this.id = id;
             Operador.listaIds.add(this.id);
             this.edges = new ArrayList<>();
-            this.consolaEntrada = new ArrayList<>();
-            this.consolaSalida = new ArrayList<>();
+            this.consola = new Consola();
             this.altura = altura;
         } else {
             this.id = -1; //aca va un error en realidad
@@ -33,8 +31,7 @@ public abstract class Operador {
             this.id = id;
             Operador.listaIds.add(this.id);
             this.edges = new ArrayList<>();
-            this.consolaEntrada = new ArrayList<>();
-            this.consolaSalida = new ArrayList<>();
+            this.consola = new Consola();
             this.altura = altura;
             this.posicion = posicion;
         } else {
@@ -50,16 +47,16 @@ public abstract class Operador {
         return this.posicion;
     }
 
-    public List<Mensaje> getConsola() {
-        return this.consolaEntrada;
+    public Consola getConsola() {
+        return this.consola;
     }
 
     public void addMensajeEntrada(Mensaje mensaje){
-        this.consolaEntrada.add(mensaje);
+        this.consola.addMensajeEntrada(mensaje);
     }
 
     public void addMensajeSalida(Mensaje mensaje){
-        this.consolaSalida.add(mensaje);
+        this.consola.addMensajeSalida(mensaje);
     }
 
     public int getAltura() {

@@ -8,7 +8,7 @@ import java.util.List;
 public class PingReply extends Mensaje {
 
     public PingReply(String id, Operador origen, Operador destino, contenido.PingReply contenido) {
-        super(id + "-Reply", origen, destino, contenido);
+        super(id, origen, destino, contenido);
     }
 
     @Override
@@ -16,7 +16,7 @@ public class PingReply extends Mensaje {
         Operador origen = this.getOrigen();
         List<Edge> edges = origen.getEdges();
         for (Edge arista : edges) {
-            if (arista.getEstado()) {
+            if (arista.getEstado() && !this.getRecorrido().contains(arista.getDestino())) {
                 contenido.PingReply contenido = (contenido.PingReply) this.getContenido();
                 contenido.sumarLatencia((int) arista.getDistancia());
                 arista.getDestino().recibirMensaje(this);

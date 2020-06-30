@@ -7,15 +7,16 @@ import java.util.List;
 
 public class InfoRequest extends Mensaje {
     public InfoRequest(String id, Operador origen, Operador destino) {
-        super(id + "-Request", origen, destino);
+        super(id, origen, destino);
     }
 
     @Override
     public void enviar() {
         Operador origen = this.getOrigen();
+        origen.addMensajeSalida(this);
         List<Edge> edges = origen.getEdges();
         for (Edge arista : edges) {
-            if (arista.getEstado()) {
+            if (arista.getEstado() && !this.getRecorrido().contains(arista.getDestino())) {
                 arista.getDestino().recibirMensaje(this);
             }
         }
@@ -24,6 +25,7 @@ public class InfoRequest extends Mensaje {
     @Override
     public void reenviarMensaje() {
         Operador origen = this.getOrigen();
+        origen.addMensajeSalida(this);
         List<Edge> edges = origen.getEdges();
         for (Edge arista : edges) {
             if (arista.getEstado() && !this.getRecorrido().contains(arista.getDestino())) {

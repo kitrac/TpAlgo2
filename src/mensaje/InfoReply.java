@@ -9,7 +9,7 @@ import java.util.List;
 
 public class InfoReply extends Mensaje implements Cloneable {
     public InfoReply(String id, Operador origen, Operador destino, contenido.InfoReply contenido) {
-        super(id + "-Reply", origen, destino, contenido);
+        super(id, origen, destino, contenido);
     }
 
     @Override
@@ -17,11 +17,11 @@ public class InfoReply extends Mensaje implements Cloneable {
         Operador origen = this.getOrigen();
         List<Edge> edges = origen.getEdges();
         for (Edge arista : edges) {
-            if (arista.getEstado()) {
-                InfoReply mensajeCopiado = this.clone();
+            if (arista.getEstado() && !this.getRecorrido().contains(arista.getDestino())) {
                 contenido.InfoReply contenido = (contenido.InfoReply) this.getContenido();
                 contenido.InfoReply contenidoCopiado = contenido.clone();
                 contenidoCopiado.sumarDistancia(arista.getDistancia());
+                InfoReply mensajeCopiado = this.clone(contenidoCopiado);
                 arista.getDestino().recibirMensaje(mensajeCopiado);
             }
         }
@@ -34,15 +34,15 @@ public class InfoReply extends Mensaje implements Cloneable {
         for (Edge arista : edges) {
             if (arista.getEstado() && !this.getRecorrido().contains(arista.getDestino())) {
                 contenido.InfoReply contenido = (contenido.InfoReply) this.getContenido();
-                contenido.sumarDistancia(arista.getDistancia());
-                InfoReply mensajeCopiado = this.clone();
+                contenido.InfoReply contenidoCopiado = contenido.clone();
+                contenidoCopiado.sumarDistancia(arista.getDistancia());
+                InfoReply mensajeCopiado = this.clone(contenidoCopiado);
                 arista.getDestino().recibirMensaje(mensajeCopiado);
             }
         }
     }
 
-    @Override
-    public InfoReply clone() {
-        return new InfoReply(this.getId(), this.getOrigen(), this.getDestino(), (contenido.InfoReply) this.getContenido());
+    public InfoReply clone(contenido.InfoReply contenido) {
+        return new InfoReply(this.getId(), this.getOrigen(), this.getDestino(), contenido);
     }
 }

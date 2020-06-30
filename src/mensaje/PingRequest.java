@@ -8,7 +8,7 @@ import java.util.List;
 public class PingRequest extends Mensaje {
 
     public PingRequest(String id, Operador origen, Operador destino) {
-        super(id + "-Request", origen, destino);
+        super(id, origen, destino);
     }
 
     @Override
@@ -16,7 +16,7 @@ public class PingRequest extends Mensaje {
         Operador origen = this.getOrigen();
         List<Edge> edges = origen.getEdges();
         for (Edge arista : edges) {
-            if (arista.getEstado()) {
+            if (arista.getEstado() && !this.getRecorrido().contains(arista.getDestino())) {
                 arista.getDestino().recibirMensaje(this);
             }
         }

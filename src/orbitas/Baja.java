@@ -12,7 +12,6 @@ public class Baja extends Orbita implements OrbitasMoviles {
     @Override
     public void moverSatelites() {
         List<Satelite> satelites = this.getSatelites();
-
         for (Satelite satelite : satelites) {
             satelite.mover(this.getLargo());
         }

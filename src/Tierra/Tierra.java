@@ -1,15 +1,11 @@
 package Tierra;
 
 import mensaje.InfoRequest;
-import mensaje.Mensaje;
-import mensaje.PingRequest;
 import orbitas.Baja;
 import orbitas.GeoSincrona;
 import orbitas.Media;
 import orbitas.Orbita;
 import red.*;
-
-import java.util.List;
 
 public class Tierra {
 
@@ -115,11 +111,18 @@ public class Tierra {
         //  E2.enviarMensaje(new InfoRequest("Hola",E2, C3));
 
         //D
+
+
         Estacion E3 = (Estacion) this.redSatelital.getOperador(10);
         Comunicacion C2 = (Comunicacion) this.redSatelital.getOperador(2);
 
-        E3.enviarMensaje(new InfoRequest("Hola", E3, C2));
 
+        System.out.println(C2);
+
+        E3.enviarMensaje(new InfoRequest("idcualquiera", E3, C2));
+
+
+        E3.getConsola().verMsjEntrada();
         //  System.out.println(redSatelital);
     }
 
