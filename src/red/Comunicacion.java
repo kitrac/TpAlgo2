@@ -10,6 +10,10 @@ public class Comunicacion extends SateliteGeo {
         super(id, altura, diametroVisible);
     }
 
+    public Comunicacion(int id, int altura, int diametroVisible, int posicion) {
+        super(id, altura, diametroVisible, posicion);
+    }
+
     @Override
     public void recibirMensaje(PingRequest mensaje) {
         if (mensaje.getDestino().getId() == this.getId()) {

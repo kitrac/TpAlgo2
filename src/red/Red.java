@@ -39,6 +39,15 @@ public class Red {
         return estaciones;
     }
 
+    public Operador getOperador(int id) {
+        for (Operador operador : estructuras) {
+            if (operador.getId() == id) {
+                return operador;
+            }
+        }
+        return null;
+    }
+
     public String toString() {
         return "" + estructuras;
     }

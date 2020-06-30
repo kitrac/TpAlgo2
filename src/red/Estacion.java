@@ -6,18 +6,33 @@ public class Estacion extends Operador {
 
     public Estacion(int id, int largoTierra) {
         super(id, 0);
-        this.setPosicionInicial(largoTierra);
+        this.setPosicionInicialRandom(largoTierra);
+    }
+
+    public Estacion(int id, int posicion, int largoTierra) {
+        super(id, 0);
+        if (posicion >= 0 && posicion <= largoTierra){
+            this.setPosicion(posicion);
+        }else{
+            //error
+        }
     }
 
 
     @Override
     public void recibirMensaje(PingRequest mensaje) {
-
+        if (mensaje.getDestino().getId() == this.getId()) {
+            System.out.println(mensaje.getContenido());
+        }
+        this.addMensajeEntrada(mensaje);
     }
 
     @Override
     public void recibirMensaje(PingReply mensaje) {
-
+        if (mensaje.getDestino().getId() == this.getId()) {
+            System.out.println(mensaje.getContenido());
+        }
+        this.addMensajeEntrada(mensaje);
     }
 
     @Override
@@ -34,11 +49,6 @@ public class Estacion extends Operador {
             System.out.println(mensaje.getContenido());
         }
         this.addMensajeEntrada(mensaje);
-    }
-
-    public Estacion(int id, int largoTierra, int altura) {
-        super(id, altura);
-        this.setPosicionInicial(largoTierra);
     }
 
     public void addEdge(Satelite destino) {

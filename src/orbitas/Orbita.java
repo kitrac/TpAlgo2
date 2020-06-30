@@ -54,10 +54,13 @@ public abstract class Orbita {
         return Orbita.maximoLargo;
     }
 
-    public void addSatelite(@NotNull Satelite satelite) {
+    public void addSatelite(Satelite satelite) {
         if (satelite.getAltura() >= this.alturaMinima && satelite.getAltura() <= this.alturaMaxima) {
             this.satelites.add(satelite);
-            satelite.setPosicionInicial(this.largo);
+            if(satelite.getPosicion() != 0){
+                satelite.setPosicionInicialRandom(this.largo);
+            }
+
         } else {
             //error
         }

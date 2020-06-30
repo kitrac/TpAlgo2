@@ -1,6 +1,6 @@
 package contenido;
 
-public class InfoReply extends Contenido {
+public class InfoReply extends Contenido implements Cloneable {
 
     private int idSatelite;
     private double distanciaOrigen;
@@ -13,6 +13,11 @@ public class InfoReply extends Contenido {
 
     public void sumarDistancia(double distanciaRecorrer) {
         this.distanciaOrigen  = this.distanciaOrigen + distanciaRecorrer;
+    }
+
+    @Override
+    public InfoReply clone() {
+        return new InfoReply(this.getReenvio(),this.idSatelite,this.distanciaOrigen);
     }
 
     @Override

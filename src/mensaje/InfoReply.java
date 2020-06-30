@@ -1,11 +1,13 @@
 package mensaje;
 
+import contenido.Contenido;
 import red.Edge;
 import red.Operador;
 
+import javax.sound.sampled.Line;
 import java.util.List;
 
-public class InfoReply extends Mensaje{
+public class InfoReply extends Mensaje implements Cloneable {
     public InfoReply(String id, Operador origen, Operador destino, contenido.InfoReply contenido) {
         super(id + "-Reply", origen, destino, contenido);
     }
@@ -16,9 +18,11 @@ public class InfoReply extends Mensaje{
         List<Edge> edges = origen.getEdges();
         for (Edge arista : edges) {
             if (arista.getEstado()) {
+                InfoReply mensajeCopiado = this.clone();
                 contenido.InfoReply contenido = (contenido.InfoReply) this.getContenido();
-                contenido.sumarDistancia(arista.getDistancia());
-                arista.getDestino().recibirMensaje(this);
+                contenido.InfoReply contenidoCopiado = contenido.clone();
+                contenidoCopiado.sumarDistancia(arista.getDistancia());
+                arista.getDestino().recibirMensaje(mensajeCopiado);
             }
         }
     }
@@ -31,8 +35,14 @@ public class InfoReply extends Mensaje{
             if (arista.getEstado() && !this.getRecorrido().contains(arista.getDestino())) {
                 contenido.InfoReply contenido = (contenido.InfoReply) this.getContenido();
                 contenido.sumarDistancia(arista.getDistancia());
-                arista.getDestino().recibirMensaje(this);
+                InfoReply mensajeCopiado = this.clone();
+                arista.getDestino().recibirMensaje(mensajeCopiado);
             }
         }
+    }
+
+    @Override
+    public InfoReply clone() {
+        return new InfoReply(this.getId(), this.getOrigen(), this.getDestino(), (contenido.InfoReply) this.getContenido());
     }
 }

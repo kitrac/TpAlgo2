@@ -28,6 +28,20 @@ public abstract class Operador {
         }
     }
 
+    public Operador(int id, int altura, int posicion) {
+        if (!Operador.listaIds.contains(id)) {
+            this.id = id;
+            Operador.listaIds.add(this.id);
+            this.edges = new ArrayList<>();
+            this.consolaEntrada = new ArrayList<>();
+            this.consolaSalida = new ArrayList<>();
+            this.altura = altura;
+            this.posicion = posicion;
+        } else {
+            this.id = -1; //aca va un error en realidad
+        }
+    }
+
     public int getId() {
         return id;
     }
@@ -52,7 +66,7 @@ public abstract class Operador {
         return this.altura;
     }
 
-    public void setPosicionInicial(int largoOrbita) {
+    public void setPosicionInicialRandom(int largoOrbita) {
         this.posicion = (int) (Math.random() * largoOrbita);
     }
 

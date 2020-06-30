@@ -18,6 +18,12 @@ public abstract class Satelite extends Operador {
         this.diametroVisible = diametroVisible;
     }
 
+    public Satelite(int id, int velocidad, int altura, int diametroVisible, int posicion) {
+        super(id, altura, posicion);
+        this.velocidad = velocidad;
+        this.diametroVisible = diametroVisible;
+    }
+
     //se agrega la arista de ida y vuelta "arista doble"
     public void addEdge(Operador destino) {
         Edge arista = new Edge(this, destino);
