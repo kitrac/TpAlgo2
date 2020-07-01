@@ -69,7 +69,6 @@ public class Tierra {
             E3.addEdge(M3);
             E3.addEdge(C2);
             E3.addEdge(M4);
-            E3.addEdge(M1);
 
             M4.addEdge(E4);
 
