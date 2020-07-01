@@ -1,20 +1,22 @@
 package red;
 
+import exceptions.IdOperadorDuplicadoException;
+import exceptions.PosicionOperadorException;
 import mensaje.*;
 
 public class Estacion extends Operador {
 
-    public Estacion(int id, int largoTierra) {
+    public Estacion(int id, int largoTierra) throws IdOperadorDuplicadoException {
         super(id, 0);
         this.setPosicionInicialRandom(largoTierra);
     }
 
-    public Estacion(int id, int posicion, int largoTierra) {
+    public Estacion(int id, int posicion, int largoTierra) throws IdOperadorDuplicadoException, PosicionOperadorException {
         super(id, 0);
-        if (posicion >= 0 && posicion <= largoTierra){
+        if (posicion >= 0 && posicion <= largoTierra) {
             this.setPosicion(posicion);
-        }else{
-            //error
+        } else {
+            throw new PosicionOperadorException("Error posicion estacion: " + this.getId());
         }
     }
 
@@ -25,6 +27,7 @@ public class Estacion extends Operador {
             PingReply respuesta = new PingReply(mensaje.getId(), this, mensaje.getCreador(), new contenido.PingReply(0));
             mensaje.addOperadorRecorrido(this);
             this.enviarMensaje(respuesta);
+            this.addMensajeSalida(mensaje);
         }
         this.addMensajeEntrada(mensaje);
     }
@@ -43,6 +46,7 @@ public class Estacion extends Operador {
             InfoReply respuesta = new InfoReply(mensaje.getId(), this, mensaje.getCreador(), new contenido.InfoReply(true, this.getId(), 0));
             mensaje.addOperadorRecorrido(this);
             this.enviarMensaje(respuesta);
+            this.addMensajeSalida(mensaje);
         }
         this.addMensajeEntrada(mensaje);
     }

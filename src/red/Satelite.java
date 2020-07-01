@@ -1,9 +1,7 @@
 package red;
 
-import mensaje.InfoReply;
-import mensaje.InfoRequest;
-import mensaje.PingReply;
-import mensaje.PingRequest;
+import exceptions.AristaMeteorologicoException;
+import exceptions.IdOperadorDuplicadoException;
 
 import java.util.List;
 
@@ -12,20 +10,29 @@ public abstract class Satelite extends Operador {
     private int velocidad;
     private int diametroVisible;
 
-    public Satelite(int id, int velocidad, int altura, int diametroVisible) {
+    public Satelite(int id, int velocidad, int altura, int diametroVisible) throws IdOperadorDuplicadoException {
         super(id, altura);
         this.velocidad = velocidad;
         this.diametroVisible = diametroVisible;
     }
 
-    public Satelite(int id, int velocidad, int altura, int diametroVisible, int posicion) {
+    public Satelite(int id, int velocidad, int altura, int diametroVisible, int posicion) throws IdOperadorDuplicadoException {
         super(id, altura, posicion);
         this.velocidad = velocidad;
         this.diametroVisible = diametroVisible;
     }
 
     //se agrega la arista de ida y vuelta "arista doble"
-    public void addEdge(Operador destino) {
+    public void addEdge(Operador destino) throws AristaMeteorologicoException {
+
+        if (this instanceof Meteorologico && !(destino instanceof Estacion)) {
+            throw new AristaMeteorologicoException("Error al añadir arista origen: " + this.getId() + " destino: " + destino.getId());
+        }
+
+        if (destino instanceof Meteorologico) {
+            throw new AristaMeteorologicoException("Error al añadir arista origen: " + this.getId() + " destino: " + destino.getId());
+        }
+
         Edge arista = new Edge(this, destino);
         this.getEdges().add(arista);
 
@@ -33,6 +40,8 @@ public abstract class Satelite extends Operador {
         destino.getEdges().add(aristaVuelta);
 
         this.actualizarEstadoEdges();
+
+
     }
 
     public int getDiametroVisible() {
@@ -59,7 +68,7 @@ public abstract class Satelite extends Operador {
         }
     }
 
-    public  void actualizarDistanciaEdge() {
+    public void actualizarDistanciaEdge() {
         List<Edge> edges = this.getEdges();
         for (Edge arista : edges) {
             int distanciaX = Math.abs(this.getPosicion() - arista.getDestino().getPosicion());

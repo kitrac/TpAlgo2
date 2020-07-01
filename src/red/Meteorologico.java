@@ -1,12 +1,13 @@
 package red;
 
+import exceptions.IdOperadorDuplicadoException;
 import mensaje.InfoReply;
 import mensaje.InfoRequest;
 import mensaje.PingReply;
 import mensaje.PingRequest;
 
 public class Meteorologico extends Satelite {
-    public Meteorologico(int id, int velocidad, int altura, int diametroVisible) {
+    public Meteorologico(int id, int velocidad, int altura, int diametroVisible) throws IdOperadorDuplicadoException {
         super(id, velocidad, altura, diametroVisible);
     }
 
@@ -15,6 +16,7 @@ public class Meteorologico extends Satelite {
             PingReply respuesta = new PingReply(mensaje.getId(), this, mensaje.getCreador(), new contenido.PingReply(0));
             mensaje.addOperadorRecorrido(this);
             this.enviarMensaje(respuesta);
+            this.addMensajeSalida(mensaje);
         }
         this.addMensajeEntrada(mensaje);
     }
@@ -32,6 +34,7 @@ public class Meteorologico extends Satelite {
             InfoReply respuesta = new InfoReply(mensaje.getId(), this, mensaje.getCreador(), new contenido.InfoReply(true, this.getId(), 0));
             mensaje.addOperadorRecorrido(this);
             this.enviarMensaje(respuesta);
+            this.addMensajeSalida(mensaje);
         }
         this.addMensajeEntrada(mensaje);
     }

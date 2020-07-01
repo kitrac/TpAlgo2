@@ -1,9 +1,6 @@
 package orbitas;
 
-import org.jetbrains.annotations.NotNull;
-import red.Edge;
-import red.Estacion;
-import red.Operador;
+import exceptions.AlturaOrbitaException;
 import red.Satelite;
 
 import java.util.ArrayList;
@@ -54,15 +51,14 @@ public abstract class Orbita {
         return Orbita.maximoLargo;
     }
 
-    public void addSatelite(Satelite satelite) {
+    public void addSatelite(Satelite satelite) throws AlturaOrbitaException {
         if (satelite.getAltura() >= this.alturaMinima && satelite.getAltura() <= this.alturaMaxima) {
             this.satelites.add(satelite);
-            if(satelite.getPosicion() == 0){
+            if (satelite.getPosicion() == 0) {
                 satelite.setPosicionInicialRandom(this.largo);
             }
-
         } else {
-            //error
+            throw new AlturaOrbitaException("Error en la altura del satelite con ID: " + satelite.getId());
         }
     }
 

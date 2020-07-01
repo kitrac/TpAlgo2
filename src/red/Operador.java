@@ -1,5 +1,6 @@
 package red;
 
+import exceptions.IdOperadorDuplicadoException;
 import javafx.scene.input.Mnemonic;
 import mensaje.*;
 
@@ -14,7 +15,7 @@ public abstract class Operador {
     private Consola consola;
     private int altura;
 
-    public Operador(int id, int altura) {
+    public Operador(int id, int altura) throws IdOperadorDuplicadoException {
         if (!Operador.listaIds.contains(id)) {
             this.id = id;
             Operador.listaIds.add(this.id);
@@ -22,11 +23,11 @@ public abstract class Operador {
             this.consola = new Consola();
             this.altura = altura;
         } else {
-            this.id = -1; //aca va un error en realidad
+            throw new IdOperadorDuplicadoException();
         }
     }
 
-    public Operador(int id, int altura, int posicion) {
+    public Operador(int id, int altura, int posicion)  throws IdOperadorDuplicadoException {
         if (!Operador.listaIds.contains(id)) {
             this.id = id;
             Operador.listaIds.add(this.id);
@@ -35,7 +36,7 @@ public abstract class Operador {
             this.altura = altura;
             this.posicion = posicion;
         } else {
-            this.id = -1; //aca va un error en realidad
+            throw new IdOperadorDuplicadoException("ID: " + id + " ya esta en uso");
         }
     }
 

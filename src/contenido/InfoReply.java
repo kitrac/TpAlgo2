@@ -12,19 +12,16 @@ public class InfoReply extends Contenido implements Cloneable {
     }
 
     public void sumarDistancia(double distanciaRecorrer) {
-        this.distanciaOrigen  = this.distanciaOrigen + distanciaRecorrer;
+        this.distanciaOrigen = this.distanciaOrigen + distanciaRecorrer;
     }
 
     @Override
     public InfoReply clone() {
-        return new InfoReply(this.getReenvio(),this.idSatelite,this.distanciaOrigen);
+        return new InfoReply(this.getReenvio(), this.idSatelite, this.distanciaOrigen);
     }
 
     @Override
     public String toString() {
-        return "InfoReply{" +
-                "idSatelite=" + idSatelite +
-                ", distanciaOrigen=" + distanciaOrigen +
-                '}';
+        return "Origen: " + this.idSatelite + " distancia: " + this.distanciaOrigen;
     }
 }
