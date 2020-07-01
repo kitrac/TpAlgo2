@@ -165,20 +165,19 @@ public class Tierra {
             E3.enviarMensaje(new InfoRequest("E", E3, M1));
 
 
-            E1.getConsola().limpiarConsola();
-            E2.getConsola().limpiarConsola();
-            E3.getConsola().limpiarConsola();
-            E4.getConsola().limpiarConsola();
+            this.limpiarConsolas(); //aca limpio porque si "pasa" una hora y previo el mensaje ya exista y no tiene conexcion con el satelite no tira el error
 
-            C1.getConsola().limpiarConsola();
-            C2.getConsola().limpiarConsola();
-            C3.getConsola().limpiarConsola();
-
-            M1.getConsola().limpiarConsola();
-            M2.getConsola().limpiarConsola();
-            M4.getConsola().limpiarConsola();
         } catch (Exception e) {
             System.out.println(e);
+        }
+    }
+
+    private void limpiarConsolas(){
+        for (Satelite satelite : this.redSatelital.getSatelites()) {
+            satelite.getConsola().limpiarConsola();
+        }
+        for (Estacion estacion : this.redSatelital.getEstaciones()) {
+            estacion.getConsola().limpiarConsola();
         }
     }
 
