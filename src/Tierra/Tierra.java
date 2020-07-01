@@ -1,6 +1,8 @@
 package Tierra;
 
 import mensaje.InfoRequest;
+import mensaje.PingReply;
+import mensaje.PingRequest;
 import orbitas.Baja;
 import orbitas.GeoSincrona;
 import orbitas.Media;
@@ -27,11 +29,11 @@ public class Tierra {
         Comunicacion C2 = new Comunicacion(2, 36000, 4000, 5000);
         Comunicacion C3 = new Comunicacion(3, 36000, 4000, 2000);
 
-        Meteorologico M1 = new Meteorologico(4, 324, 1700, 300);
-        Meteorologico M3 = new Meteorologico(5, 324, 1700, 300);
+        Meteorologico M1 = new Meteorologico(4, 324, 1700, 500);
+        Meteorologico M3 = new Meteorologico(5, 324, 1700, 500);
 
-        Meteorologico M2 = new Meteorologico(6, 324, 11000, 300);
-        Meteorologico M4 = new Meteorologico(7, 324, 11000, 300);
+        Meteorologico M2 = new Meteorologico(6, 324, 11000, 500);
+        Meteorologico M4 = new Meteorologico(7, 101, 11000, 500);
 
 
         this.orbitaGeo.addSatelite(C1);
@@ -45,7 +47,7 @@ public class Tierra {
         this.orbitaBaja.addSatelite(M3);
 
         Estacion E1 = new Estacion(8, 9000, largoTierra);
-        Estacion E2 = new Estacion(9, 7700, largoTierra);
+        Estacion E2 = new Estacion(9, 8700, largoTierra);
         Estacion E3 = new Estacion(10, 4500, largoTierra);
         Estacion E4 = new Estacion(11, 2000, largoTierra);
 
@@ -91,38 +93,62 @@ public class Tierra {
     }
 
 
-    public void run() {
+    public void run(int hora) {
         this.orbitaBaja.moverSatelites();
         this.orbitaMedia.moverSatelites();
 
-//        System.out.println((Estacion) this.redSatelital.getOperador(10));
+        System.out.println("\nHora:" + hora + "\n");
+        /* PUNTOS GENERALES */
 
-        //B
+        //3
+        Estacion E1 = (Estacion) this.redSatelital.getOperador(8);
+        Comunicacion C1 = (Comunicacion) this.redSatelital.getOperador(1);
 
-        //  Estacion E1 = (Estacion) this.redSatelital.getOperador(8);
-        // Meteorologico M1 = (Meteorologico) this.redSatelital.getOperador(4);
+        E1.enviarMensaje(new PingRequest("3", E1, C1));
 
-        // E1.enviarMensaje(new InfoRequest("Hola",E1, M1));
+        //4
+        Estacion E2 = (Estacion) this.redSatelital.getOperador(9);
+        E1.enviarMensaje(new PingRequest("4", E1, E2));
 
-        //C
-        // Estacion E2 = (Estacion) this.redSatelital.getOperador(9);
-        //Comunicacion C3 = (Comunicacion) this.redSatelital.getOperador(3);
-
-        //  E2.enviarMensaje(new InfoRequest("Hola",E2, C3));
-
-        //D
-
-
+        //5
         Estacion E3 = (Estacion) this.redSatelital.getOperador(10);
+        Meteorologico M4 = (Meteorologico) this.redSatelital.getOperador(7);
+        E3.enviarMensaje(new PingRequest("5", E3, M4));
+
+        //6
+        Meteorologico M2 = (Meteorologico) this.redSatelital.getOperador(5);
+
+        E3.enviarMensaje(new PingRequest("6", E3,M2));
+
+        //7
+        Estacion E4 = (Estacion) this.redSatelital.getOperador(11);
         Comunicacion C2 = (Comunicacion) this.redSatelital.getOperador(2);
 
+        E4.enviarMensaje(new PingRequest("7", E4,C2));
 
-        System.out.println(C2);
+        /* PUNTOS DEL EQUIPO */
+        //B H
 
-        E3.enviarMensaje(new InfoRequest("idcualquiera", E3, C2));
+        Meteorologico M1 = (Meteorologico) this.redSatelital.getOperador(4);
+
+        E1.enviarMensaje(new InfoRequest("B", E1, M1));
+
+        //C
+        Comunicacion C3 = (Comunicacion) this.redSatelital.getOperador(3);
+        E2.enviarMensaje(new InfoRequest("C", E2, C3));
+
+        //D
+        E3.enviarMensaje(new InfoRequest("D", E3, C2));
+
+        //E G
+
+        E3.enviarMensaje(new InfoRequest("E", E3, M1));
+
+        //F
+
+        E3.enviarMensaje(new InfoRequest("D", E3, C2));
 
 
-        E3.getConsola().verMsjEntrada();
         //  System.out.println(redSatelital);
     }
 

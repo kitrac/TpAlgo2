@@ -22,7 +22,9 @@ public class Estacion extends Operador {
     @Override
     public void recibirMensaje(PingRequest mensaje) {
         if (mensaje.getDestino().getId() == this.getId()) {
-            System.out.println(mensaje.getContenido());
+            PingReply respuesta = new PingReply(mensaje.getId(), this, mensaje.getCreador(), new contenido.PingReply(0));
+            mensaje.addOperadorRecorrido(this);
+            this.enviarMensaje(respuesta);
         }
         this.addMensajeEntrada(mensaje);
     }
@@ -30,7 +32,7 @@ public class Estacion extends Operador {
     @Override
     public void recibirMensaje(PingReply mensaje) {
         if (mensaje.getDestino().getId() == this.getId()) {
-            System.out.println(mensaje.getContenido());
+            System.out.println(mensaje.getContenido() + " Origen: " + mensaje.getOrigen().getId());
         }
         this.addMensajeEntrada(mensaje);
     }
@@ -38,7 +40,9 @@ public class Estacion extends Operador {
     @Override
     public void recibirMensaje(InfoRequest mensaje) {
         if (mensaje.getDestino().getId() == this.getId()) {
-            System.out.println(mensaje.getContenido());
+            InfoReply respuesta = new InfoReply(mensaje.getId(), this, mensaje.getCreador(), new contenido.InfoReply(true, this.getId(), 0));
+            mensaje.addOperadorRecorrido(this);
+            this.enviarMensaje(respuesta);
         }
         this.addMensajeEntrada(mensaje);
     }

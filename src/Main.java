@@ -8,7 +8,7 @@ public class Main {
 
         Tierra tierra = new Tierra();
         for (int i = 0; i < tiempo; i++) {
-            tierra.run();
+            tierra.run(i);
         }
     }
 }

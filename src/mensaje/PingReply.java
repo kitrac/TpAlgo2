@@ -5,7 +5,7 @@ import red.Operador;
 
 import java.util.List;
 
-public class PingReply extends Mensaje {
+public class PingReply extends Mensaje implements Cloneable{
 
     public PingReply(String id, Operador origen, Operador destino, contenido.PingReply contenido) {
         super(id, origen, destino, contenido);
@@ -18,8 +18,10 @@ public class PingReply extends Mensaje {
         for (Edge arista : edges) {
             if (arista.getEstado() && !this.getRecorrido().contains(arista.getDestino())) {
                 contenido.PingReply contenido = (contenido.PingReply) this.getContenido();
-                contenido.sumarLatencia((int) arista.getDistancia());
-                arista.getDestino().recibirMensaje(this);
+                contenido.PingReply contenidoNuevo = new contenido.PingReply(contenido.getLatencia());
+                contenidoNuevo.sumarLatencia((int) arista.getDistancia());
+                PingReply mensajeCopia = this.clone(contenidoNuevo);
+                arista.getDestino().recibirMensaje(mensajeCopia);
             }
         }
     }
@@ -31,9 +33,15 @@ public class PingReply extends Mensaje {
         for (Edge arista : edges) {
             if (arista.getEstado() && !this.getRecorrido().contains(arista.getDestino())) {
                 contenido.PingReply contenido = (contenido.PingReply) this.getContenido();
-                contenido.sumarLatencia((int) arista.getDistancia());
-                arista.getDestino().recibirMensaje(this);
+                contenido.PingReply contenidoNuevo = new contenido.PingReply(contenido.getLatencia());
+                contenidoNuevo.sumarLatencia((int) arista.getDistancia());
+                PingReply mensajeCopia = this.clone(contenidoNuevo);
+                arista.getDestino().recibirMensaje(mensajeCopia);
             }
         }
+    }
+
+    public PingReply clone(contenido.PingReply contenido) {
+        return new PingReply(this.getId(), this.getOrigen(), this.getDestino(), contenido);
     }
 }
