@@ -16,7 +16,7 @@ public class Consola {
 
     public void verEstado() {
         if (this.entrada.isEmpty() && this.salida.isEmpty()) {
-            System.out.println("Consola vacía");
+            System.out.println("\nCONSOLA VACIA");
         } else {
             if (this.entrada.size() > 0) {
                 System.out.println("Bandeja de entrada tiene: " + this.entrada.size() + " mensajes");
@@ -46,25 +46,65 @@ public class Consola {
     }
 
     public void verConsola() {
-        System.out.println("Mensajes entrada:\n");
-        for (Mensaje mensaje : this.entrada) {
-            System.out.println(mensaje);
-        }
-        System.out.println("Mensajes salida:\n");
-        for (Mensaje mensaje : salida) {
-            System.out.println(mensaje);
+        if (this.entrada.isEmpty() && this.salida.isEmpty()) {
+            System.out.println("\nCONSOLA VACIA");
+        } else {
+            if (this.entrada.size() > 0) {
+                System.out.println("\n****Mensajes entrada******\n");
+                for (Mensaje mensaje : this.entrada) {
+                    System.out.println(mensaje);
+                }
+            } else {
+                System.out.println("Bandeja entrada vacia");
+            }
+            if (this.salida.size() > 0) {
+                System.out.println("\n****Mensajes salida****\n");
+                for (Mensaje mensaje : salida) {
+                    System.out.println(mensaje);
+                }
+            } else {
+                System.out.println("Bandeja salida vacia");
+            }
+
         }
     }
 
+    public List<Mensaje> getEntrada() {
+        return entrada;
+    }
+
+    public List<Mensaje> getSalida() {
+        return salida;
+    }
+
+    public Mensaje getMensajeEntrada(String id) {
+
+        for (Mensaje mensaje : entrada) {
+            if (mensaje.getId().equals(id)) {
+                return mensaje;
+            }
+        }
+        return null;
+    }
+
+    public Mensaje getMensajeSalida(String id) {
+        for (Mensaje mensaje : salida) {
+            if (mensaje.getId().equals(id)) {
+                return mensaje;
+            }
+        }
+        return null;
+    }
+
     public void verMsjEntrada() {
-        System.out.println("Mensajes entrada:\n");
+        System.out.println("\n****Mensajes entrada******\n");
         for (Mensaje mensaje : this.entrada) {
             System.out.println(mensaje);
         }
     }
 
     public void verMsjSalida() {
-        System.out.println("Mensajes salida:\n");
+        System.out.println("\n****Mensajes salida****\n");
         for (Mensaje mensaje : salida) {
             System.out.println(mensaje);
         }

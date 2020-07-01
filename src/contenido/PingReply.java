@@ -1,16 +1,16 @@
 package contenido;
 
-public class PingReply extends Contenido implements Cloneable{
+public class PingReply extends Contenido implements Cloneable {
 
     private double latencia;
 
-    public PingReply(int distancia) {
-        super(true);
+    public PingReply(int distancia, boolean reenvio) {
+        super(reenvio);
         this.latencia = calculoLatencia(distancia);
     }
 
-    public PingReply(double latencia) {
-        super(true);
+    public PingReply(double latencia, boolean reenvio) {
+        super(reenvio);
         this.latencia = latencia;
     }
 
@@ -28,6 +28,6 @@ public class PingReply extends Contenido implements Cloneable{
 
     @Override
     public String toString() {
-        return "latencia =" + latencia;
+        return "latencia: " + latencia;
     }
 }

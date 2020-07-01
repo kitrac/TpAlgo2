@@ -1,5 +1,6 @@
 package mensaje;
 
+import exceptions.MensajeRepetidoException;
 import red.Edge;
 import red.Operador;
 

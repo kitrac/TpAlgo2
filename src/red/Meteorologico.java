@@ -13,7 +13,7 @@ public class Meteorologico extends Satelite {
 
     public void recibirMensaje(PingRequest mensaje) {
         if (mensaje.getDestino().getId() == this.getId()) {
-            PingReply respuesta = new PingReply(mensaje.getId(), this, mensaje.getCreador(), new contenido.PingReply(0));
+            PingReply respuesta = new PingReply(mensaje.getId(), this, mensaje.getCreador(), new contenido.PingReply(0,true));
             mensaje.addOperadorRecorrido(this);
             this.enviarMensaje(respuesta);
             this.addMensajeSalida(mensaje);

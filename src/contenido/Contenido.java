@@ -11,4 +11,8 @@ public class Contenido {
         return this.reenvio;
     }
 
+    @Override
+    public String toString() {
+        return "Sin contenido";
+    }
 }

@@ -1,6 +1,7 @@
 package mensaje;
 
 import contenido.Contenido;
+import exceptions.MensajeRepetidoException;
 import red.Operador;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public abstract class Mensaje {
         this.contenido = contenido;
         this.recorrido = new ArrayList<>();
         this.addOperadorRecorrido(origen);
+
     }
 
     public String getId() {
@@ -71,7 +73,7 @@ public abstract class Mensaje {
 
     @Override
     public String toString() {
-        return "" + this.id + " " + this.origen + " " + this.destino + " " + this.contenido;
+        return "Id: " + this.id + " Creador: " + this.getCreador().getId() + " Destino: " + this.destino.getId() + " Contenido: " + this.contenido;
     }
 
 

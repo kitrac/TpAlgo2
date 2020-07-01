@@ -18,7 +18,7 @@ public class PingReply extends Mensaje implements Cloneable{
         for (Edge arista : edges) {
             if (arista.getEstado() && !this.getRecorrido().contains(arista.getDestino())) {
                 contenido.PingReply contenido = (contenido.PingReply) this.getContenido();
-                contenido.PingReply contenidoNuevo = new contenido.PingReply(contenido.getLatencia());
+                contenido.PingReply contenidoNuevo = new contenido.PingReply(contenido.getLatencia(),true);
                 contenidoNuevo.sumarLatencia((int) arista.getDistancia());
                 PingReply mensajeCopia = this.clone(contenidoNuevo);
                 arista.getDestino().recibirMensaje(mensajeCopia);
@@ -33,7 +33,7 @@ public class PingReply extends Mensaje implements Cloneable{
         for (Edge arista : edges) {
             if (arista.getEstado() && !this.getRecorrido().contains(arista.getDestino())) {
                 contenido.PingReply contenido = (contenido.PingReply) this.getContenido();
-                contenido.PingReply contenidoNuevo = new contenido.PingReply(contenido.getLatencia());
+                contenido.PingReply contenidoNuevo = new contenido.PingReply(contenido.getLatencia(),true);
                 contenidoNuevo.sumarLatencia((int) arista.getDistancia());
                 PingReply mensajeCopia = this.clone(contenidoNuevo);
                 arista.getDestino().recibirMensaje(mensajeCopia);

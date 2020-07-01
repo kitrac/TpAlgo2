@@ -1,6 +1,7 @@
 package red;
 
 import exceptions.IdOperadorDuplicadoException;
+import exceptions.OperadorDesconectadoException;
 import javafx.scene.input.Mnemonic;
 import mensaje.*;
 
@@ -27,7 +28,7 @@ public abstract class Operador {
         }
     }
 
-    public Operador(int id, int altura, int posicion)  throws IdOperadorDuplicadoException {
+    public Operador(int id, int altura, int posicion) throws IdOperadorDuplicadoException {
         if (!Operador.listaIds.contains(id)) {
             this.id = id;
             Operador.listaIds.add(this.id);
@@ -52,11 +53,11 @@ public abstract class Operador {
         return this.consola;
     }
 
-    public void addMensajeEntrada(Mensaje mensaje){
+    public void addMensajeEntrada(Mensaje mensaje) {
         this.consola.addMensajeEntrada(mensaje);
     }
 
-    public void addMensajeSalida(Mensaje mensaje){
+    public void addMensajeSalida(Mensaje mensaje) {
         this.consola.addMensajeSalida(mensaje);
     }
 
@@ -96,6 +97,13 @@ public abstract class Operador {
 
     public void enviarMensaje(PingRequest mensaje) {
         mensaje.enviar();
+        if (this.getId() == mensaje.getCreador().getId()) {
+            Mensaje mensajesEntrada = this.getConsola().getMensajeEntrada(mensaje.getId());
+            if (mensajesEntrada == null) {
+                OperadorDesconectadoException exception = new OperadorDesconectadoException("no hay conexión contra operador: " + mensaje.getDestino().getId());
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
     public void enviarMensaje(PingReply mensaje) {
@@ -104,6 +112,13 @@ public abstract class Operador {
 
     public void enviarMensaje(InfoRequest mensaje) {
         mensaje.enviar();
+        if (this == mensaje.getCreador()) {
+            Mensaje mensajesEntrada = this.getConsola().getMensajeEntrada(mensaje.getId());
+            if (mensajesEntrada == null) {
+                OperadorDesconectadoException exception = new OperadorDesconectadoException("no hay conexión contra operador: " + mensaje.getDestino().getId());
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
     public void enviarMensaje(InfoReply mensaje) {

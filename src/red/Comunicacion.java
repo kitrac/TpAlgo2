@@ -11,14 +11,14 @@ public class Comunicacion extends SateliteGeo {
         super(id, altura, diametroVisible);
     }
 
-    public Comunicacion(int id, int altura, int diametroVisible, int posicion) throws IdOperadorDuplicadoException{
+    public Comunicacion(int id, int altura, int diametroVisible, int posicion) throws IdOperadorDuplicadoException {
         super(id, altura, diametroVisible, posicion);
     }
 
     @Override
     public void recibirMensaje(PingRequest mensaje) {
         if (mensaje.getDestino().getId() == this.getId()) {
-            PingReply respuesta = new PingReply(mensaje.getId(), this, mensaje.getCreador(), new contenido.PingReply(0));
+            PingReply respuesta = new PingReply(mensaje.getId(), this, mensaje.getCreador(), new contenido.PingReply(0, true));
             this.enviarMensaje(respuesta);
             this.addMensajeSalida(mensaje);
         } else if (mensaje.getContenido().getReenvio()) {
