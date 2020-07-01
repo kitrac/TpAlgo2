@@ -1,4 +1,4 @@
-package Tierra;
+package tierra;
 
 import exceptions.RedSatelitalException;
 import mensaje.InfoRequest;
